@@ -69,7 +69,7 @@
 .residentMeta .info{min-height:66px}
 .residentActions{display:flex;gap:8px;margin-top:12px}
 .residentActions button{flex:1;padding:10px;border-radius:9px;border:1px solid #35506d;background:#15283a;color:#fff;font-weight:800;cursor:pointer}
-.residentActions button.primarySmall{background:linear-gradient(90deg,#2077dc,#14a380);border:0}
+.residentActions button.primarySmall{background:linear-gradient(90deg,#2077dc,#14a380);border:0}.residentActions button.dangerSmall{background:#5a2024;border-color:#9a3a42;color:#ffd7da}
 .formSection{margin-top:14px;padding-top:12px;border-top:1px solid #35506d}
 .formSection h4{margin:0 0 10px}
 .formGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -141,6 +141,7 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
 .expenseTypeBadge{display:inline-block;border:1px solid #35506d;border-radius:999px;padding:4px 8px;font-size:11px}.fixedBadge{border-color:#2f8c72;color:#74e0bd}
 .expenseEntryGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.expenseEntryGrid .full{grid-column:1/-1}.expenseEntryGrid label{display:block;color:#9fb2c6;font-size:12px;margin-bottom:5px}.expenseEntryGrid input,.expenseEntryGrid select,.expenseEntryGrid textarea{width:100%;box-sizing:border-box;background:#0d1c2a;color:#fff;border:1px solid #35506d;border-radius:10px;padding:11px}.expenseEntryGrid textarea{min-height:70px}
 .expenseModalActions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:14px}.expenseModalActions button{padding:10px 13px;border-radius:9px;border:1px solid #35506d;background:#15283a;color:#fff;font-weight:800;cursor:pointer}.expenseModalActions .save{border:0;background:linear-gradient(90deg,#2077dc,#14a380)}
+.expenseRowActions{display:flex;gap:6px;justify-content:flex-end;white-space:nowrap}.expenseRowActions button{padding:7px 9px;border-radius:7px;border:1px solid #35506d;color:#fff;font-weight:800;cursor:pointer;background:#15304a}.expenseRowActions .deleteExpenseBtn{background:#6f2730;border-color:#96404a}.expenseRowActions .editExpenseBtn{background:#17456c;border-color:#28679a}
 .costNote{margin-top:12px;padding:11px 13px;border:1px solid #35506d;border-radius:10px;color:#b9c8d7;font-size:12px;line-height:1.5}
 @media(max-width:1050px){.expenseSummary{grid-template-columns:repeat(3,1fr)}}@media(max-width:700px){.expenseSummary{grid-template-columns:1fr 1fr}.expenseEntryGrid{grid-template-columns:1fr}.expenseEntryGrid .full{grid-column:auto}}
 
@@ -242,6 +243,10 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
 @media(max-width:850px){#reportsView .reportKpis{grid-template-columns:1fr 1fr!important}#reportsView .reportSections{grid-template-columns:1fr}#reportsView .reportOccupancy{grid-template-columns:1fr}#reportsView .reportOcc{border-right:0;border-bottom:1px solid #dce5ef}#reportsView .reportOcc:last-child{border-bottom:0}}
 @media(max-width:620px){#reportsView .reportKpis{grid-template-columns:1fr!important}#reportsView .reportPeriodTitle{font-size:20px}#reportsView .reportKpi{padding-left:64px}}
 
+
+/* AYARLAR V6.9.4 - ESKI/TEST KAYIT YONETIMI */
+.settingsGrid{display:grid;grid-template-columns:1fr;gap:12px}.settingsPanel{border:1px solid #35506d;border-radius:14px;background:#101f2d;padding:16px}.settingsPanel h3{margin:0 0 6px}.settingsPanel p{margin:0 0 14px;color:#a9b9ca;line-height:1.5}.cleanupToolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.cleanupToolbar input{max-width:420px}.cleanupToolbar button{padding:10px 13px;border-radius:9px;border:1px solid #35506d;background:#15304a;color:#fff;font-weight:800;cursor:pointer}.cleanupTableWrap{overflow:auto;border:1px solid #35506d;border-radius:12px}.cleanupTable{width:100%;border-collapse:collapse;min-width:900px}.cleanupTable th,.cleanupTable td{padding:10px 9px;border-bottom:1px solid #273e54;text-align:left}.cleanupTable th{background:#102538}.cleanupTable .center{text-align:center}.cleanupDelete{border:1px solid #a5434f;background:#7a2630;color:#fff;border-radius:8px;padding:8px 11px;font-weight:900;cursor:pointer}.cleanupStatus{display:inline-block;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:900}.cleanupStatus.active{background:#113b2c;color:#63ef9b}.cleanupStatus.old{background:#4b2024;color:#ff9a9f}.cleanupInfo{margin-top:10px;color:#9fb2c6;font-size:12px}.dangerZone{border-color:#6d343b}.dangerZone h3{color:#ff9a9f}
+
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
@@ -257,7 +262,7 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
 <button data-view="expenses">▤ &nbsp; GİDERLER</button>
 <button data-view="reports">▥ &nbsp; RAPORLAR</button>
 <button data-view="pending">□ &nbsp; ARŞİV</button>
-<button data-view="pending">⚙ &nbsp; AYARLAR</button>
+<button data-view="settings">⚙ &nbsp; AYARLAR</button>
 </div><div class="user"><b id="userName">Yönetici</b><small id="userRole">YONETICI</small></div><button class="logout" id="logoutBtn">↪ &nbsp; Çıkış Yap</button></aside>
 <main class="main"><div id="homeView" class="view"><div class="topbar"><div><h1>SEİDA APART YÖNETİM SİSTEMİ <span id="onlineState" class="statusLine">● Bağlı</span></h1></div><div class="filters"><select id="yearSelect"></select><select id="monthSelect"><option value="1">Ocak</option><option value="2">Şubat</option><option value="3">Mart</option><option value="4">Nisan</option><option value="5">Mayıs</option><option value="6">Haziran</option><option value="7">Temmuz</option><option value="8">Ağustos</option><option value="9">Eylül</option><option value="10">Ekim</option><option value="11">Kasım</option><option value="12">Aralık</option></select><button id="refreshBtn">Yenile</button></div></div>
 <section class="card section"><h2>Yaklaşan Ödemeler & Hatırlatmalar</h2><div class="alerts" id="alerts"></div></section><div class="spacer"></div>
@@ -378,7 +383,7 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
     </div>
     <div id="expenseSummary" class="expenseSummary"></div>
     <div class="costNote">Kişi başı maliyet = seçili ayın toplam gideri / aktif konaklayan sayısı. Net kâr hesabı tahakkuktan değil, fiilen tahsil edilen toplam kira+aidat tutarından yapılır.</div>
-    <div class="expenseTableWrap" style="margin-top:14px"><table class="expenseTable"><thead><tr><th>Tarih</th><th>Gider Türü</th><th>Açıklama</th><th>Sabit / Değişken</th><th>Ödeme Şekli</th><th>Belge / Fatura No</th><th class="num">Tutar</th></tr></thead><tbody id="expenseRows"></tbody></table></div>
+    <div class="expenseTableWrap" style="margin-top:14px"><table class="expenseTable"><thead><tr><th>Tarih</th><th>Gider Türü</th><th>Açıklama</th><th>Sabit / Değişken</th><th>Ödeme Şekli</th><th>Belge / Fatura No</th><th class="num">Tutar</th><th class="num">İşlem</th></tr></thead><tbody id="expenseRows"></tbody></table></div>
     <div id="expenseMsg" class="paymentMsg"></div>
   </section>
 </div>
@@ -416,6 +421,26 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
       </button>
     </div>
   </section>
+</div>
+
+<div id="settingsView" class="view hiddenView">
+  <div class="pageHead">
+    <div><h2>AYARLAR</h2><p>Sistem bakımı ve eski/test kayıtlarının yönetimi</p></div>
+  </div>
+  <div class="settingsGrid">
+    <section class="settingsPanel dangerZone">
+      <h3>Eski / Test Kiracı Kayıtlarını Temizle</h3>
+      <p>Aktif kartı görünmeyen eski veya test kiracılarını buradan bulup tamamen silebilirsiniz. Silme işlemi ilgili tahsilat, tahakkuk, kira, sözleşme/depozito, KBS ve konaklama kayıtlarını da temizler. Normal kiracı çıkışlarında bu bölüm kullanılmaz; <b>Çıkış Ver</b> işlemi kullanılmalıdır.</p>
+      <div class="cleanupToolbar">
+        <input id="cleanupResidentSearch" placeholder="Ad soyad ara (örn. Mehmet Yılmaz)">
+        <button id="cleanupRefreshBtn" type="button">Listeyi Yenile</button>
+      </div>
+      <div class="cleanupTableWrap">
+        <table class="cleanupTable"><thead><tr><th>Konaklayan</th><th>Durum</th><th>Daire</th><th class="center">Konaklama</th><th class="center">Tahakkuk</th><th class="center">Kira</th><th class="center">Sözleşme</th><th>İşlem</th></tr></thead><tbody id="cleanupResidentRows"></tbody></table>
+      </div>
+      <div id="cleanupInfo" class="cleanupInfo"></div>
+    </section>
+  </div>
 </div>
 
 </main></section>
@@ -551,7 +576,7 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
   <div id="paymentEntryMsg" class="msg"></div>
 </div></div>
 
-<div class="modal" id="expenseEntryModal"><div class="modalCard"><div class="modalHead"><h3>Gider Kaydı</h3><button class="close" id="expenseEntryClose">×</button></div>
+<div class="modal" id="expenseEntryModal"><div class="modalCard"><div class="modalHead"><h3 id="expenseEntryTitle">Gider Kaydı</h3><button class="close" id="expenseEntryClose">×</button></div>
   <div class="expenseEntryGrid">
     <div><label>Gider Tarihi</label><input id="expenseDate" type="date"></div>
     <div><label>Gider Türü</label><select id="expenseType"><option>Elektrik</option><option>Su</option><option>Doğalgaz</option><option>Temizlik</option><option>Bakım</option><option>Onarım</option><option>Personel</option><option>İnternet</option><option>Vergi / Harç</option><option>Sarf Malzeme</option><option>Demirbaş Alımı</option><option>İnşaat</option><option value="__custom__">+ Yeni Gider Adı</option></select></div>
@@ -576,6 +601,7 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
     <div class="cardActionRow">
       <button class="primaryAction" id="residentEditBtn">Bilgileri Düzenle</button>
       <button class="warnAction" id="kbsCompleteBtn">KBS Girişini Tamamla</button>
+      <button class="dangerSmall" id="residentDeleteDetailBtn" style="background:#7a2630;color:#fff;border-color:#a5434f">Kaydı Tamamen Sil</button>
       <button id="residentDetailCloseBottom">Kapat</button>
     </div>
     <div id="residentActionMsg" class="msg"></div>
@@ -594,24 +620,23 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
       <div class="formGrid">
         <div><label>Adı</label><input id="erFirstName"></div>
         <div><label>Soyadı</label><input id="erLastName"></div>
+        <div><label>T.C. Kimlik No</label><input id="erTcNo" inputmode="numeric" maxlength="11" placeholder="11 haneli T.C. Kimlik No"></div>
         <div><label>Cinsiyet</label><select id="erGender"><option value="">Seçiniz</option><option>ERKEK</option><option>KADIN</option><option>DİĞER</option></select></div>
-        <div><label>Doğum Tarihi</label><input id="erBirthDate" type="date"></div>
         <div><label>Telefon</label><input id="erPhone"></div>
-        <div><label>E-posta</label><input id="erEmail" type="email"></div>
       </div>
     </div>
 
     <div class="formSection">
-      <h4>Aile / Yakın Bilgileri</h4>
+      <h4>Acil Kişi Bilgileri</h4>
       <div class="formGrid">
-        <div><label>Anne Adı</label><input id="erMotherName"></div>
-        <div><label>Anne Telefonu</label><input id="erMotherPhone"></div>
-        <div class="full"><label>Anne İkamet Adresi</label><textarea id="erMotherAddress"></textarea></div>
-        <div><label>Baba Adı</label><input id="erFatherName"></div>
-        <div><label>Baba Telefonu</label><input id="erFatherPhone"></div>
-        <div class="full"><label>Baba İkamet Adresi</label><textarea id="erFatherAddress"></textarea></div>
-        <div><label>Yakınlık Derecesi</label><input id="erEmergencyRelation"></div>
-        <div><label>Yakının Telefonu</label><input id="erEmergencyPhone"></div>
+        <div><label>Acil Kişi 1 - Adı Soyadı</label><input id="erEmergency1Name"></div>
+        <div><label>Acil Kişi 1 - Telefon</label><input id="erEmergency1Phone"></div>
+        <div><label>Acil Kişi 1 - Yakınlık Derecesi</label><select id="erEmergency1Relation"><option value="">Seçiniz</option><option>ANNESİ</option><option>BABASI</option><option>ABİSİ</option><option>ABLASI</option><option>KARDEŞİ</option><option>EŞİ</option><option>AMCASI</option><option>DAYISI</option><option>TEYZESİ</option><option>HALASI</option><option>ARKADAŞI</option><option value="DIGER">DİĞER / KENDİM YAZACAĞIM</option></select></div>
+        <div><label>Acil Kişi 1 - Diğer Yakınlık</label><input id="erEmergency1RelationOther" placeholder="Örn. Kuzeni"></div>
+        <div><label>Acil Kişi 2 - Adı Soyadı</label><input id="erEmergency2Name"></div>
+        <div><label>Acil Kişi 2 - Telefon</label><input id="erEmergency2Phone"></div>
+        <div><label>Acil Kişi 2 - Yakınlık Derecesi</label><select id="erEmergency2Relation"><option value="">Seçiniz</option><option>ANNESİ</option><option>BABASI</option><option>ABİSİ</option><option>ABLASI</option><option>KARDEŞİ</option><option>EŞİ</option><option>AMCASI</option><option>DAYISI</option><option>TEYZESİ</option><option>HALASI</option><option>ARKADAŞI</option><option value="DIGER">DİĞER / KENDİM YAZACAĞIM</option></select></div>
+        <div><label>Acil Kişi 2 - Diğer Yakınlık</label><input id="erEmergency2RelationOther" placeholder="Örn. Kuzeni"></div>
       </div>
     </div>
 
@@ -621,6 +646,22 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
         <div><label>Daire</label><select id="erApartment"></select></div>
         <div><label>Giriş Tarihi</label><input id="erStartDate" type="date"></div>
       </div>
+    </div>
+
+    <div class="formSection">
+      <h4>Kira / Aidat / Depozito Bilgileri</h4>
+      <div class="formGrid">
+        <div><label>Aylık Toplam Bedel (Aidat Dahil)</label><input id="erRentAmount" type="number" min="0" step="0.01"></div>
+        <div><label>Aidat</label><input id="erFeeAmount" type="number" min="0" step="0.01"></div>
+        <div><label>Ödeme Günü</label><input id="erPaymentDay" type="number" min="1" max="31"></div>
+        <div><label>Depozito</label><input id="erDepositAmount" type="number" min="0" step="0.01"></div>
+        <div><label>Kontrat Başlangıç</label><input id="erContractStart" type="date"></div>
+        <div><label>Kontrat Bitiş</label><input id="erContractEnd" type="date"></div>
+        <div><label>Depozito Alınma Tarihi</label><input id="erDepositReceivedDate" type="date"></div>
+        <div><label>Depozito Ödeme Şekli</label><select id="erDepositMethod"><option value="">Seçiniz</option><option value="NAKIT">Nakit</option><option value="BANKA">Banka</option><option value="KREDI_KARTI">Kredi Kartı</option></select></div>
+        <div class="full"><label>Depozito Notu</label><textarea id="erDepositNote" placeholder="İsteğe bağlı"></textarea></div>
+      </div>
+      <div class="notice" style="margin-top:10px">Bu bölümde yapılan değişiklikler kiracı kartına, sözleşme/depozito kaydına ve bundan sonraki tahakkuklara esas olur. Tahsil edilmiş geçmiş aylar otomatik değiştirilmez.</div>
     </div>
 
     <div class="formActions">
@@ -696,24 +737,23 @@ body.print-accrual .side,body.print-accrual .mobileMenuBtn,body.print-accrual .m
       <div class="formGrid">
         <div><label>Adı</label><input id="nrFirstName"></div>
         <div><label>Soyadı</label><input id="nrLastName"></div>
+        <div><label>T.C. Kimlik No</label><input id="nrTcNo" inputmode="numeric" maxlength="11" placeholder="11 haneli T.C. Kimlik No"></div>
         <div><label>Cinsiyet</label><select id="nrGender"><option value="">Seçiniz</option><option>ERKEK</option><option>KADIN</option><option>DİĞER</option></select></div>
-        <div><label>Doğum Tarihi</label><input id="nrBirthDate" type="date"></div>
         <div><label>Telefon</label><input id="nrPhone"></div>
-        <div><label>E-posta</label><input id="nrEmail" type="email"></div>
       </div>
     </div>
 
     <div class="formSection">
-      <h4>Yakın / Aile Bilgileri</h4>
+      <h4>Acil Kişi Bilgileri</h4>
       <div class="formGrid">
-        <div><label>Anne Adı</label><input id="nrMotherName"></div>
-        <div><label>Anne Telefonu</label><input id="nrMotherPhone"></div>
-        <div class="full"><label>Anne İkamet Adresi</label><textarea id="nrMotherAddress"></textarea></div>
-        <div><label>Baba Adı</label><input id="nrFatherName"></div>
-        <div><label>Baba Telefonu</label><input id="nrFatherPhone"></div>
-        <div class="full"><label>Baba İkamet Adresi</label><textarea id="nrFatherAddress"></textarea></div>
-        <div><label>Yakınlık Derecesi</label><input id="nrEmergencyRelation"></div>
-        <div><label>Yakının Telefonu</label><input id="nrEmergencyPhone"></div>
+        <div><label>Acil Kişi 1 - Adı Soyadı</label><input id="nrEmergency1Name"></div>
+        <div><label>Acil Kişi 1 - Telefon</label><input id="nrEmergency1Phone"></div>
+        <div><label>Acil Kişi 1 - Yakınlık Derecesi</label><select id="nrEmergency1Relation"><option value="">Seçiniz</option><option>ANNESİ</option><option>BABASI</option><option>ABİSİ</option><option>ABLASI</option><option>KARDEŞİ</option><option>EŞİ</option><option>AMCASI</option><option>DAYISI</option><option>TEYZESİ</option><option>HALASI</option><option>ARKADAŞI</option><option value="DIGER">DİĞER / KENDİM YAZACAĞIM</option></select></div>
+        <div><label>Acil Kişi 1 - Diğer Yakınlık</label><input id="nrEmergency1RelationOther" placeholder="Örn. Kuzeni"></div>
+        <div><label>Acil Kişi 2 - Adı Soyadı</label><input id="nrEmergency2Name"></div>
+        <div><label>Acil Kişi 2 - Telefon</label><input id="nrEmergency2Phone"></div>
+        <div><label>Acil Kişi 2 - Yakınlık Derecesi</label><select id="nrEmergency2Relation"><option value="">Seçiniz</option><option>ANNESİ</option><option>BABASI</option><option>ABİSİ</option><option>ABLASI</option><option>KARDEŞİ</option><option>EŞİ</option><option>AMCASI</option><option>DAYISI</option><option>TEYZESİ</option><option>HALASI</option><option>ARKADAŞI</option><option value="DIGER">DİĞER / KENDİM YAZACAĞIM</option></select></div>
+        <div><label>Acil Kişi 2 - Diğer Yakınlık</label><input id="nrEmergency2RelationOther" placeholder="Örn. Kuzeni"></div>
       </div>
     </div>
 
@@ -1060,6 +1100,7 @@ function switchView(view){
   $('#paymentsView').classList.toggle('hiddenView',view!=='payments');
   $('#expensesView').classList.toggle('hiddenView',view!=='expenses');
   $('#reportsView').classList.toggle('hiddenView',view!=='reports');
+  $('#settingsView').classList.toggle('hiddenView',view!=='settings');
 
   if(view==='apartments') renderApartmentManagement();
   if(view==='residents') renderResidents();
@@ -1067,21 +1108,106 @@ function switchView(view){
   if(view==='payments') openPaymentPanel();
   if(view==='expenses') openExpensePanel();
   if(view==='reports') openReportsPanel();
+  if(view==='settings') renderSettingsCleanup();
 }
 
 
-function rentForStay(st){
-  const rr=newestRow(currentRows(state.rentRates,st.resident_id,st.id))||{};
-  return Number(rr.rent_amount ?? rr.monthly_rent ?? rr.monthly_amount ?? rr.amount ?? 0);
+function firstSchemaRow(rows){return (rows||[]).find(x=>x&&typeof x==='object')||null}
+function putIfColumn(p,sample,key,value){if(sample&&Object.prototype.hasOwnProperty.call(sample,key))p[key]=value}
+function makeRentPayloadFromSchema(sample,st,residentId,rent,fee,payDay,start){
+  if(!sample)return null; const p={};
+  putIfColumn(p,sample,'resident_id',residentId); putIfColumn(p,sample,'stay_id',st?.id); putIfColumn(p,sample,'apartment_id',st?.apartment_id); putIfColumn(p,sample,'year_id',st?.year_id);
+  if('monthly_rent' in sample)p.monthly_rent=rent; else if('rent_amount' in sample)p.rent_amount=rent; else if('monthly_amount' in sample)p.monthly_amount=rent; else if('amount' in sample)p.amount=rent; else return null;
+  if('payment_day' in sample)p.payment_day=payDay; else if('due_day' in sample)p.due_day=payDay;
+  if('fee_amount' in sample)p.fee_amount=fee; else if('monthly_fee' in sample)p.monthly_fee=fee;
+  if(start){if('valid_from' in sample)p.valid_from=start; else if('effective_date' in sample)p.effective_date=start; else if('start_date' in sample)p.start_date=start;}
+  if('is_active' in sample)p.is_active=true; return p;
 }
-function feeForStay(st){
-  const rr=newestRow(currentRows(state.rentRates,st.resident_id,st.id))||{};
-  const direct=rr.fee_amount ?? rr.monthly_fee;
-  if(direct!==undefined && direct!==null && direct!=='') return Math.max(0,Number(direct||0));
+function makeContractPayloadFromSchema(sample,st,residentId,apartmentId,rent,fee,deposit,start,end,notes){
+  if(!sample)return null; const p={};
+  putIfColumn(p,sample,'resident_id',residentId); putIfColumn(p,sample,'stay_id',st?.id); putIfColumn(p,sample,'apartment_id',apartmentId); putIfColumn(p,sample,'year_id',st?.year_id);
+  if(start){if('contract_start_date' in sample)p.contract_start_date=start; else if('start_date' in sample)p.start_date=start;}
+  if(end){if('contract_end_date' in sample)p.contract_end_date=end; else if('end_date' in sample)p.end_date=end;}
+  if('contract_date' in sample)p.contract_date=new Date().toISOString().slice(0,10);
+  if('monthly_rent' in sample)p.monthly_rent=rent; else if('rent_amount' in sample)p.rent_amount=rent;
+  if('fee_amount' in sample)p.fee_amount=fee; else if('monthly_fee' in sample)p.monthly_fee=fee;
+  if('deposit_amount' in sample)p.deposit_amount=deposit; else if('deposit' in sample)p.deposit=deposit;
+  if('notes' in sample)p.notes=notes;
+  if('status' in sample)p.status=(sample.status==='AKTIF'||sample.status==='TASLAK')?sample.status:'AKTIF';
+  return p;
+}
+function accrualValue(row){
+  if(!row)return 0;
+  for(const k of ['total_amount','rent_amount','monthly_rent','monthly_amount','accrual_amount','amount_due','amount']){
+    if(row[k]!==undefined && row[k]!==null && row[k]!=='') return Number(row[k]||0);
+  }
+  return 0;
+}
+function accrualAmountPatch(row,total){
+  const p={};
+  for(const k of ['total_amount','rent_amount','monthly_rent','monthly_amount','accrual_amount','amount_due','amount']){
+    if(row && k in row){p[k]=total;return p;}
+  }
+  p.monthly_rent=total;
+  return p;
+}
+async function ensureMonthlyAccrual(st,year,month,total,{preservePaid=true}={}){
+  const q=await sb.from('accruals').select('*').eq('stay_id',st.id).eq('accrual_year',year).eq('accrual_month',month);
+  if(q.error)throw new Error(q.error.message);
+  const existing=(q.data||[])[0];
+  if(existing){
+    if(preservePaid){const pr=await sb.from('payments').select('*').eq('accrual_id',existing.id);if(!pr.error&&pr.data?.some(p=>Number(p.amount||0)>0))return existing;}
+    const up=await sb.from('accruals').update(accrualAmountPatch(existing,total)).eq('id',existing.id).select('*').single();
+    if(up.error)throw new Error(up.error.message); return up.data||existing;
+  }
+  let sample=firstSchemaRow(state.accruals);
+  if(!sample){const sr=await sb.from('accruals').select('*').limit(1);if(!sr.error)sample=firstSchemaRow(sr.data);}
+  // accruals tablosunda accrual_date NOT NULL. Seçilen dönemin ilk günü tahakkuk tarihi olarak yazılır.
+  // Ödeme günü ayrı olarak kira kaydında tutulduğu için tahakkuk tarihi ile karıştırılmaz.
+  const accrualDate=`${Number(year)}-${String(Number(month)).padStart(2,'0')}-01`;
+  const base={stay_id:st.id,resident_id:st.resident_id,accrual_year:year,accrual_month:month,accrual_date:accrualDate,status:'BEKLIYOR'};
+  if(sample){putIfColumn(base,sample,'apartment_id',st.apartment_id);putIfColumn(base,sample,'year_id',st.year_id);}
+  const variants=[];
+  if(sample){
+    const p={};
+    for(const k of ['stay_id','resident_id','apartment_id','year_id','accrual_year','accrual_month','accrual_date','status']) if(k in sample && base[k]!==undefined)p[k]=base[k];
+    Object.assign(p,accrualAmountPatch(sample,total));
+    variants.push(p);
+  }
+  // accruals tablosu boşsa şema satırdan öğrenilemez. Bu nedenle yalnız tutar kolonunu
+  // kontrollü biçimde deneyip, bulunmayan kolon hatalarını atlayarak gerçek kolonu buluyoruz.
+  const amountColumns=['monthly_rent','monthly_amount','accrual_amount','amount_due','total_amount','rent_amount','amount'];
+  for(const amountCol of amountColumns){
+    variants.push({...base,[amountCol]:total});
+    variants.push({...base,apartment_id:st.apartment_id,year_id:st.year_id,[amountCol]:total});
+  }
+  let last=null, meaningful=null;
+  for(const payload of variants){
+    const ir=await sb.from('accruals').insert(payload).select('*').single();
+    if(!ir.error)return ir.data;
+    last=ir.error;
+    const msg=String(ir.error?.message||'');
+    const missingColumn=/Could not find the '[^']+' column/i.test(msg) || /column .* does not exist/i.test(msg);
+    if(!missingColumn && !meaningful) meaningful=ir.error;
+  }
+  throw new Error((meaningful||last)?.message||'Tahakkuk kaydı oluşturulamadı.');
+}
+function financialForStay(st){
+  if(!st) return {rr:null,c:null,nd:{},rent:0,fee:0,deposit:0,paymentDay:5,start:'',end:'',depositReceivedDate:'',depositMethod:'',depositNote:''};
+  const rr=newestRow(currentRows(state.rentRates,st.resident_id,st.id));
   const c=newestRow(currentRows(state.contracts,st.resident_id,st.id));
   const nd=contractNotesData(c);
-  return Math.max(0,Number(c?.fee_amount ?? nd.fee ?? 0));
+  const rent=Math.max(0,Number(rr?.rent_amount ?? rr?.monthly_rent ?? rr?.monthly_amount ?? rr?.amount ?? c?.monthly_rent ?? nd.rent ?? 0));
+  const fee=Math.max(0,Number(rr?.fee_amount ?? rr?.monthly_fee ?? c?.fee_amount ?? nd.fee ?? 0));
+  const deposit=Math.max(0,Number(c?.deposit_amount ?? rr?.deposit_amount ?? nd.deposit ?? 0));
+  const paymentDay=Number(rr?.payment_day ?? rr?.due_day ?? nd.paymentDay ?? 5)||5;
+  const start=String(c?.contract_start_date||c?.start_date||nd.start||(stayStartDate(st)==='—'?'':stayStartDate(st))||'').slice(0,10);
+  const end=String(c?.contract_end_date||c?.end_date||nd.end||'').slice(0,10);
+  return {rr,c,nd,rent,fee,deposit,paymentDay,start,end,depositReceivedDate:nd.depositReceivedDate||'',depositMethod:nd.depositMethod||'',depositNote:nd.depositNote||''};
 }
+function rentForStay(st){ return financialForStay(st).rent; }
+function feeForStay(st){ return financialForStay(st).fee; }
+function depositForStay(st){ return financialForStay(st).deposit; }
 function splitCollection(st,totalPaid){
   const total=Math.max(0,rentForStay(st)), fee=Math.min(total,Math.max(0,feeForStay(st))), net=Math.max(0,total-fee), paid=Math.max(0,Number(totalPaid||0));
   const feePaid=Math.min(paid,fee), rentPaid=Math.min(Math.max(0,paid-fee),net);
@@ -1112,12 +1238,13 @@ async function refreshAccrualPanel(){
 }
 function renderAccrualPanel(){
   const body=$('#accrualRows'),sum=$('#accrualSummary'); if(!body||!sum)return;
+  const {year,month}=accrualPanelPeriod();
   const q=($('#accrualSearch')?.value||'').trim().toLocaleLowerCase('tr-TR');
   let total=0,paid=0,count=0; const rows=[];
-  activeStays().forEach(st=>{
+  activeStaysForPeriod(year,month).forEach(st=>{
     const r=state.residents.find(x=>x.id===st.resident_id),a=state.apartments.find(x=>x.id===st.apartment_id);
     if(!r)return; const name=residentName(r); const hay=(name+' '+(a?.apartment_no||'')).toLocaleLowerCase('tr-TR'); if(q&&!hay.includes(q))return;
-    const ac=state.accruals.find(x=>x.stay_id===st.id); const rent=rentForStay(st); const amount=Number(ac?.total_amount ?? ac?.rent_amount ?? ac?.amount ?? 0); const p=ac?paymentForAccrual(ac.id):0; const rem=Math.max(amount-p,0);
+    const ac=state.accruals.find(x=>x.stay_id===st.id); const rent=rentForStay(st); const amount=accrualValue(ac); const p=ac?paymentForAccrual(ac.id):0; const rem=Math.max(amount-p,0);
     total+=amount;paid+=p;count++;
     let cls='none',label='TAHAKKUK YOK'; if(ac){if(amount>0&&p>=amount){cls='paid';label='ÖDENDİ'}else if(p>0){cls='partial';label='KISMİ'}else{cls='debt';label='BEKLİYOR'}}
     rows.push(`<tr><td><b>Daire ${a?.apartment_no||'—'}</b><div class="accrualSub">${a?.floor_name||''}</div></td><td><div class="accrualResident">${name}</div><div class="accrualSub">Ödeme günü: ${newestRow(currentRows(state.rentRates,r.id,st.id))?.payment_day||'—'}</div></td><td class="num">${fmt(rent)}</td><td class="num">${ac?fmt(amount):'—'}</td><td class="num">${fmt(p)}</td><td class="num">${ac?fmt(rem):'—'}</td><td><span class="accrualStatus ${cls}">${label}</span></td></tr>`);
@@ -1128,21 +1255,13 @@ function renderAccrualPanel(){
 }
 async function generateMonthlyAccruals(){
   const {year,month}=accrualPanelPeriod(); await ensureYearRecord(year); const btn=$('#accrualGenerate'); btn.disabled=true; $('#accrualMsg').textContent='Tahakkuklar oluşturuluyor / güncelleniyor...';
-  let ok=0,fail=0;
-  for(const st of activeStays()){
+  let ok=0,fail=0,errors=[];
+  for(const st of activeStaysForPeriod(year,month)){
     const rent=rentForStay(st); if(!rent)continue;
-    const existing=(state.accruals||[]).find(x=>x.stay_id===st.id);
-    let res;
-    if(existing){
-      const patch={total_amount:rent}; if('rent_amount' in existing)patch.rent_amount=rent; if('amount' in existing&&!('rent_amount' in existing))patch.amount=rent;
-      res=await sb.from('accruals').update(patch).eq('id',existing.id);
-    }else{
-      res=await sb.from('accruals').insert({stay_id:st.id,accrual_year:year,accrual_month:month,total_amount:rent,status:'BEKLIYOR'});
-    }
-    if(res.error)fail++;else ok++;
+    try{await ensureMonthlyAccrual(st,year,month,rent,{preservePaid:true});ok++;}catch(e){fail++;errors.push(e.message);}
   }
   await refreshAccrualPanel(); await loadPeriodData(); renderAll();
-  $('#accrualMsg').textContent=`${ok} tahakkuk işlendi${fail?' · '+fail+' kayıt hatalı':''}.`; btn.disabled=false;
+  $('#accrualMsg').textContent=`${ok} tahakkuk işlendi${fail?' · '+fail+' kayıt hatalı: '+errors[0]:''}.`; btn.disabled=false;
 }
 function printAccrualList(){
   const {year,month}=accrualPanelPeriod();
@@ -1188,8 +1307,8 @@ async function refreshPaymentPanel(){
 function renderPaymentPanel(){
   const body=$('#paymentRows'),sum=$('#paymentSummary'); if(!body||!sum)return; const {year}=paymentPanelPeriod(); const q=($('#paymentSearch')?.value||'').trim().toLocaleLowerCase('tr-TR');
   let total=0,paid=0,feePaid=0,rentPaid=0,count=0; const rows=[];
-  periodStays(year).forEach(st=>{const r=state.residents.find(x=>x.id===st.resident_id),a=state.apartments.find(x=>x.id===st.apartment_id); if(!r)return; const name=residentName(r),hay=(name+' '+(a?.apartment_no||'')).toLocaleLowerCase('tr-TR'); if(q&&!hay.includes(q))return; const ac=state.accruals.find(x=>x.stay_id===st.id),p=ac?paymentForAccrual(ac.id):0,sp=splitCollection(st,p); total+=ac?Number(ac.total_amount??sp.total):0; paid+=p; feePaid+=sp.feePaid; rentPaid+=sp.rentPaid; count++;
-    rows.push(`<tr><td><b>Daire ${a?.apartment_no||'—'}</b></td><td><b>${name}</b></td><td class="num">${fmt(sp.total)}</td><td class="num">${fmt(sp.fee)}</td><td class="num">${fmt(sp.net)}</td><td class="num">${fmt(p)}</td><td class="num">${ac?fmt(Math.max(0,Number(ac.total_amount??sp.total)-p)):'—'}</td><td><div class="paymentSplit">Aidat: ${fmt(sp.feePaid)}<br>Net kira: ${fmt(sp.rentPaid)}</div></td><td><button class="paymentRowBtn" data-stay="${st.id}">Tahsilat Gir</button></td></tr>`);
+  periodStays(year).forEach(st=>{const r=state.residents.find(x=>x.id===st.resident_id),a=state.apartments.find(x=>x.id===st.apartment_id); if(!r)return; const name=residentName(r),hay=(name+' '+(a?.apartment_no||'')).toLocaleLowerCase('tr-TR'); if(q&&!hay.includes(q))return; const ac=state.accruals.find(x=>x.stay_id===st.id),p=ac?paymentForAccrual(ac.id):0,sp=splitCollection(st,p); total+=ac?(accrualValue(ac)||sp.total):0; paid+=p; feePaid+=sp.feePaid; rentPaid+=sp.rentPaid; count++;
+    rows.push(`<tr><td><b>Daire ${a?.apartment_no||'—'}</b></td><td><b>${name}</b></td><td class="num">${fmt(sp.total)}</td><td class="num">${fmt(sp.fee)}</td><td class="num">${fmt(sp.net)}</td><td class="num">${fmt(p)}</td><td class="num">${ac?fmt(Math.max(0,(accrualValue(ac)||sp.total)-p)):'—'}</td><td><div class="paymentSplit">Aidat: ${fmt(sp.feePaid)}<br>Net kira: ${fmt(sp.rentPaid)}</div></td><td><button class="paymentRowBtn" data-stay="${st.id}">Tahsilat Gir</button></td></tr>`);
   });
   body.innerHTML=rows.length?rows.join(''):'<tr><td colspan="9" class="accrualEmpty">Bu dönemde gösterilecek konaklayan yok.</td></tr>';
   sum.innerHTML=`<div class="paymentStat"><small>KONAKLAYAN</small><strong>${count}</strong></div><div class="paymentStat"><small>TOPLAM TAHSİLAT</small><strong>${fmt(paid)}</strong></div><div class="paymentStat"><small>AİDAT TAHSİLİ</small><strong>${fmt(feePaid)}</strong></div><div class="paymentStat"><small>NET KİRA TAHSİLİ</small><strong>${fmt(rentPaid)}</strong></div>`;
@@ -1198,19 +1317,24 @@ function renderPaymentPanel(){
 let lastPaymentReceipt=null;
 function openPaymentEntry(stayId){
   lastPaymentReceipt=null;
-  const st=state.stays.find(x=>String(x.id)===String(stayId)); if(!st)return; const r=state.residents.find(x=>x.id===st.resident_id),a=state.apartments.find(x=>x.id===st.apartment_id),ac=state.accruals.find(x=>x.stay_id===st.id),paid=ac?paymentForAccrual(ac.id):0,sp=splitCollection(st,paid),{year,month}=paymentPanelPeriod();
+  const st=state.stays.find(x=>String(x.id)===String(stayId)); if(!st)return;
+  const r=state.residents.find(x=>x.id===st.resident_id),a=state.apartments.find(x=>x.id===st.apartment_id);
+  const {year,month}=paymentPanelPeriod();
+  const ac=state.accruals.find(x=>String(x.stay_id)===String(st.id)&&Number(x.accrual_year)===Number(year)&&Number(x.accrual_month)===Number(month));
+  const paid=ac?paymentForAccrual(ac.id):0,sp=splitCollection(st,paid);
   $('#paymentEntryTitle').textContent='Tahsilat Gir · '+residentName(r); $('#paymentEntryModal').dataset.stayId=st.id; $('#paymentEntryModal').dataset.accrualId=ac?.id||''; $('#paymentEntryModal').dataset.year=year; $('#paymentEntryModal').dataset.month=month;
-  $('#paymentEntryInfo').innerHTML=`<b>Daire ${a?.apartment_no||'—'} · ${residentName(r)}</b><div style="margin-top:5px;color:#9fb2c6">${month}.${year} dönemi · Toplam bedel ${fmt(sp.total)} · Daha önce tahsil ${fmt(paid)} · Kalan ${fmt(ac?Math.max(0,Number(ac.total_amount??sp.total)-paid):sp.total)}</div>`;
+  $('#paymentEntryInfo').innerHTML=`<b>Daire ${a?.apartment_no||'—'} · ${residentName(r)}</b><div style="margin-top:5px;color:#9fb2c6">${month}.${year} dönemi · Toplam bedel ${fmt(sp.total)} · Daha önce tahsil ${fmt(paid)} · Kalan ${fmt(ac?Math.max(0,(accrualValue(ac)||sp.total)-paid):sp.total)}</div>`;
   $('#paymentEntryBreakdown').innerHTML=`<div class="rentBox"><span>Aidat</span><b>${fmt(sp.fee)}</b></div><div class="rentBox"><span>Net Kira</span><b>${fmt(sp.net)}</b></div><div class="rentBox"><span>Toplam Bedel</span><b>${fmt(sp.total)}</b></div>`;
-  $('#paymentAmount').value=''; $('#paymentAmount').placeholder=ac?('Tahsil edilecek tutarı girin · Kalan '+fmt(Math.max(0,Number(ac.total_amount??sp.total)-paid))):('Tahsil edilecek tutarı girin · Borç '+fmt(sp.total)); $('#paymentDate').value=new Date().toISOString().slice(0,10); $('#paymentMethod').value='NAKIT'; $('#paymentNote').value=''; $('#paymentEntryMsg').textContent=ac?'':'Bu dönem tahakkuku henüz oluşturulmamış. Tahsilattan önce tahakkuk kaydı oluşturulacak.'; renderPaymentHistory(st,ac,year,month); $('#paymentEntryModal').classList.add('open');
+  $('#paymentAmount').value=''; $('#paymentAmount').placeholder=ac?('Tahsil edilecek tutarı girin · Kalan '+fmt(Math.max(0,(accrualValue(ac)||sp.total)-paid))):('Tahsil edilecek tutarı girin · Borç '+fmt(sp.total)); $('#paymentDate').value=new Date().toISOString().slice(0,10); $('#paymentMethod').value='NAKIT'; $('#paymentNote').value=''; $('#paymentEntryMsg').textContent=ac?'':'Bu dönem tahakkuku henüz oluşturulmamış. Tahsilattan önce tahakkuk kaydı oluşturulacak.'; renderPaymentHistory(st,ac,year,month); $('#paymentEntryModal').classList.add('open');
 }
 async function ensureAccrualForPayment(st,year,month){
-  let ac=state.accruals.find(x=>x.stay_id===st.id); if(ac)return ac; const total=rentForStay(st); const res=await sb.from('accruals').insert({stay_id:st.id,accrual_year:year,accrual_month:month,total_amount:total,status:'BEKLIYOR'}).select('*').single(); if(res.error)throw new Error(res.error.message); ac=res.data; state.accruals.push(ac); return ac;
+  let ac=state.accruals.find(x=>String(x.stay_id)===String(st.id)&&Number(x.accrual_year)===Number(year)&&Number(x.accrual_month)===Number(month));
+  if(ac)return ac; ac=await ensureMonthlyAccrual(st,Number(year),Number(month),rentForStay(st),{preservePaid:false}); state.accruals.push(ac); return ac;
 }
 async function savePaymentEntry(withPrint=false){
   const modal=$('#paymentEntryModal'),st=state.stays.find(x=>String(x.id)===String(modal.dataset.stayId)); if(!st)return; const amount=Number($('#paymentAmount').value||0),date=$('#paymentDate').value,method=$('#paymentMethod').value,note=$('#paymentNote').value.trim(),year=Number(modal.dataset.year),month=Number(modal.dataset.month); if(amount<=0){$('#paymentEntryMsg').textContent='Tahsil edilen tutarı girin.';return} $('#paymentSave').disabled=$('#paymentSavePrint').disabled=true; $('#paymentEntryMsg').textContent='Kaydediliyor...';
   try{
-    const ac=await ensureAccrualForPayment(st,year,month), before=paymentForAccrual(ac.id), remain=Math.max(0,Number(ac.total_amount||rentForStay(st))-before); if(amount>remain+0.009){throw new Error('Tahsilat tutarı kalan borçtan fazla olamaz. Kalan: '+fmt(remain))}
+    const ac=await ensureAccrualForPayment(st,year,month), before=paymentForAccrual(ac.id), remain=Math.max(0,(accrualValue(ac)||rentForStay(st))-before); if(amount>remain+0.009){throw new Error('Tahsilat tutarı kalan borçtan fazla olamaz. Kalan: '+fmt(remain))}
     const basePayment={resident_id:st.resident_id,accrual_id:ac.id,amount};
     const attempts=[
       {...basePayment,payment_date:date,payment_method:method,notes:note},
@@ -1227,7 +1351,7 @@ async function savePaymentEntry(withPrint=false){
       const msg=String(res.error?.message||'');
       if(msg.includes('resident_id')&&msg.includes('null value')) break;
     }
-    if(!saved)throw new Error(lastErr?.message||'Tahsilat kaydedilemedi.'); state.payments.push(saved); const newPaid=before+amount; if(newPaid>=Number(ac.total_amount||0)){await sb.from('accruals').update({status:'ODENDI'}).eq('id',ac.id)}
+    if(!saved)throw new Error(lastErr?.message||'Tahsilat kaydedilemedi.'); state.payments.push(saved); const newPaid=before+amount; if(newPaid>=accrualValue(ac)){await sb.from('accruals').update({status:'ODENDI'}).eq('id',ac.id)}
     const receipt={st,ac,amount,date,method,note,year,month,before,payment:saved}; lastPaymentReceipt=receipt; $('#paymentEntryMsg').textContent='Tahsilat kaydedildi. Bu tahsilat için Makbuz Yazdır düğmesini kullanabilirsiniz.'; renderPaymentHistory(st,ac,year,month); await refreshPaymentPanel(); await loadPeriodData(); renderAll(); $('#paymentAmount').value=''; if(withPrint)printCollectionReceipt(receipt);
   }catch(e){$('#paymentEntryMsg').textContent='Kayıt hatası: '+e.message}finally{$('#paymentSave').disabled=$('#paymentSavePrint').disabled=false}
 }
@@ -1299,7 +1423,7 @@ function renderResidents(){
     const s=getResidentStay(r.id);
     if(filter==='active' && !s) return false;
     const apt=s?state.apartments.find(a=>a.id===s.apartment_id):null;
-    const hay=(residentName(r)+' '+(r.phone||'')+' '+(r.email||'')+' '+(apt?.apartment_no||'')).toLocaleLowerCase('tr-TR');
+    const hay=(residentName(r)+' '+(r.phone||'')+' '+residentTcValue(r)+' '+(apt?.apartment_no||'')).toLocaleLowerCase('tr-TR');
     return !q || hay.includes(q);
   });
 
@@ -1324,16 +1448,114 @@ function renderResidents(){
         <span class="badge ${(!k||!k.entry_completed)&&s?'debt':'full'}">${kbsText}</span>
       </div>
       <div class="residentMeta">
+        <div class="info"><span>T.C. Kimlik No</span><b>${residentTcValue(r)}</b></div>
         <div class="info"><span>Cinsiyet</span><b>${r.gender||'—'}</b></div>
-        <div class="info"><span>Doğum Tarihi</span><b>${trDate(r.birth_date)}</b></div>
         <div class="info"><span>Telefon</span><b>${r.phone||'—'}</b></div>
       </div>
       <div class="residentActions">
-        <button class="primarySmall">Konaklayan Kartını Aç</button>
+        <button class="primarySmall residentOpenBtn">Konaklayan Kartını Aç</button>
+        ${filter==='all'?`<button class="dangerSmall residentDeleteBtn" data-id="${r.id}">Kaydı Tamamen Sil</button>`:''}
       </div>`;
     c.onclick=()=>openResidentDetail(r);
+    const del=c.querySelector('.residentDeleteBtn'); if(del)del.onclick=e=>{e.stopPropagation();deleteResidentCompletely(r.id)};
     grid.appendChild(c);
   });
+}
+
+function isMissingColumnError(err){
+  const m=String(err?.message||'').toLowerCase();
+  return m.includes('column') && (m.includes('does not exist')||m.includes('schema cache')||m.includes('could not find'));
+}
+async function safeDeleteEq(table,column,value){
+  const res=await sb.from(table).delete().eq(column,value);
+  if(res.error && !isMissingColumnError(res.error)) throw res.error;
+  return !res.error;
+}
+async function safeSelectIds(table,column,value){
+  const res=await sb.from(table).select('id').eq(column,value);
+  if(res.error){ if(isMissingColumnError(res.error)) return []; throw res.error; }
+  return (res.data||[]).map(x=>x.id);
+}
+async function deleteResidentCompletely(residentId){
+  const r=state.residents.find(x=>String(x.id)===String(residentId)); if(!r)return;
+  const name=residentName(r)||'Bu konaklayan';
+  if(!confirm(`${name} kaydı TAMAMEN silinecek.\n\nBu işlem; makbuz, tahsilat, tahakkuk, kira, sözleşme/depozito, KBS ve konaklama kayıtlarını da kalıcı olarak siler.\n\nDevam edilsin mi?`))return;
+  const stays=state.stays.filter(x=>String(x.resident_id)===String(residentId));
+  const stayIds=[...new Set(stays.map(x=>String(x.id)))];
+  try{
+    // 1) Önce tüm tahakkukları bul; tahsilatlar bunlara bağlı olabilir.
+    let accrualIds=[];
+    accrualIds.push(...await safeSelectIds('accruals','resident_id',residentId));
+    for(const sid of stayIds) accrualIds.push(...await safeSelectIds('accruals','stay_id',sid));
+    accrualIds=[...new Set(accrualIds.map(String))];
+
+    // 2) Tahsilatlara bağlı makbuzlar (receipts) varsa önce onları sil.
+    // PostgreSQL yabancı anahtar kısıtı nedeniyle payment silinmeden receipt silinmelidir.
+    let paymentIds=[];
+    paymentIds.push(...await safeSelectIds('payments','resident_id',residentId));
+    for(const aid of accrualIds) paymentIds.push(...await safeSelectIds('payments','accrual_id',aid));
+    paymentIds=[...new Set(paymentIds.map(String))];
+    for(const pid of paymentIds) await safeDeleteEq('receipts','payment_id',pid);
+    // Bazı şemalarda makbuz doğrudan resident/accrual bağlantısı da tutabilir; varsa temizle, yoksa sessiz geç.
+    await safeDeleteEq('receipts','resident_id',residentId);
+    for(const aid of accrualIds) await safeDeleteEq('receipts','accrual_id',aid);
+
+    // 3) Makbuzlar temizlendikten sonra tahsilatları sil.
+    for(const aid of accrualIds) await safeDeleteEq('payments','accrual_id',aid);
+    await safeDeleteEq('payments','resident_id',residentId);
+
+    // 4) Tahakkukları hem resident_id hem stay_id üzerinden temizle.
+    await safeDeleteEq('accruals','resident_id',residentId);
+    for(const sid of stayIds) await safeDeleteEq('accruals','stay_id',sid);
+
+    // 5) Kiracıya bağlı diğer finans/KBS/sözleşme kayıtlarını iki bağlantı üzerinden temizle.
+    for(const table of ['kbs_records','rent_rates','contracts','evacuation_commitments']){
+      await safeDeleteEq(table,'resident_id',residentId);
+      for(const sid of stayIds) await safeDeleteEq(table,'stay_id',sid);
+    }
+
+    // 6) Konaklamaları, sonra ana kişi kaydını sil.
+    await safeDeleteEq('stays','resident_id',residentId);
+    for(const sid of stayIds) await safeDeleteEq('stays','id',sid);
+    const rr=await sb.from('residents').delete().eq('id',residentId);
+    if(rr.error) throw rr.error;
+
+    $('#residentDetailModal')?.classList.remove('open');
+    await loadAll();
+    renderResidents();
+    renderSettingsCleanup();
+    if($('#accrualsView') && !$('#accrualsView').classList.contains('hiddenView')) await refreshAccrualPanel();
+    alert(`${name} ve bağlı tüm kayıtları sistemden tamamen silindi.`);
+  }catch(e){
+    alert('Kayıt tamamen silinemedi: '+(e?.message||e));
+  }
+}
+function cleanupRecordCounts(residentId){
+  const stays=(state.stays||[]).filter(x=>String(x.resident_id)===String(residentId));
+  const stayIds=new Set(stays.map(x=>String(x.id)));
+  const accruals=(state.accruals||[]).filter(x=>String(x.resident_id||'')===String(residentId)||stayIds.has(String(x.stay_id||'')));
+  const rents=(state.rentRates||[]).filter(x=>String(x.resident_id||'')===String(residentId)||stayIds.has(String(x.stay_id||'')));
+  const contracts=(state.contracts||[]).filter(x=>String(x.resident_id||'')===String(residentId)||stayIds.has(String(x.stay_id||'')));
+  return {stays:stays.length,accruals:accruals.length,rents:rents.length,contracts:contracts.length};
+}
+function renderSettingsCleanup(){
+  const body=$('#cleanupResidentRows'); if(!body)return;
+  const q=($('#cleanupResidentSearch')?.value||'').trim().toLocaleLowerCase('tr-TR');
+  const rows=(state.residents||[]).filter(r=>!q||residentName(r).toLocaleLowerCase('tr-TR').includes(q)).sort((a,b)=>{
+    const aa=getResidentStay(a.id)?1:0, bb=getResidentStay(b.id)?1:0;
+    if(aa!==bb)return aa-bb;
+    return residentName(a).localeCompare(residentName(b),'tr');
+  });
+  body.innerHTML=rows.length?rows.map(r=>{
+    const active=getResidentStay(r.id); const allStays=(state.stays||[]).filter(x=>String(x.resident_id)===String(r.id));
+    const lastStay=[...allStays].sort((a,b)=>String(b.updated_at||b.created_at||'').localeCompare(String(a.updated_at||a.created_at||'')))[0];
+    const apt=state.apartments.find(a=>String(a.id)===String(active?.apartment_id||lastStay?.apartment_id));
+    const c=cleanupRecordCounts(r.id);
+    return `<tr><td><b>${residentName(r)||'İsimsiz Kayıt'}</b><div class="accrualSub">${residentTcValue(r)||'—'}</div></td><td><span class="cleanupStatus ${active?'active':'old'}">${active?'AKTİF':'ESKİ / ÇIKIŞLI'}</span></td><td>${apt?'Daire '+apt.apartment_no:'—'}</td><td class="center">${c.stays}</td><td class="center">${c.accruals}</td><td class="center">${c.rents}</td><td class="center">${c.contracts}</td><td><button class="cleanupDelete" data-id="${r.id}">Tamamen Sil</button></td></tr>`;
+  }).join(''):'<tr><td colspan="8" style="text-align:center;padding:18px;color:#9fb2c6">Aramaya uygun kayıt bulunamadı.</td></tr>';
+  body.querySelectorAll('.cleanupDelete').forEach(b=>b.onclick=()=>deleteResidentCompletely(b.dataset.id));
+  const inactive=(state.residents||[]).filter(r=>!getResidentStay(r.id)).length;
+  $('#cleanupInfo').textContent=`Toplam ${(state.residents||[]).length} kişi kaydı · ${inactive} eski/çıkışlı kayıt. Eski kayıtlar listede üstte gösterilir.`;
 }
 
 function stayStartDate(s){
@@ -1354,6 +1576,7 @@ function openResidentDetail(r){
   $('#residentDetailTitle').textContent=residentName(r)||'Konaklayan Kartı';
   $('#residentEditBtn').dataset.residentId=r.id;
   $('#kbsCompleteBtn').dataset.residentId=r.id;
+  if($('#residentDeleteDetailBtn')) $('#residentDeleteDetailBtn').dataset.residentId=r.id;
   $('#residentActionMsg').textContent='';
 
   const kbsPending=!!s && (!k || !k.entry_completed);
@@ -1369,10 +1592,9 @@ function openResidentDetail(r){
       <h4>Kişisel Bilgiler</h4>
       <div class="infoGrid">
         <div class="info"><span>Ad Soyad</span><b>${residentName(r)||'—'}</b></div>
+        <div class="info"><span>T.C. Kimlik No</span><b>${residentTcValue(r)}</b></div>
         <div class="info"><span>Cinsiyet</span><b>${r.gender||'—'}</b></div>
-        <div class="info"><span>Doğum Tarihi</span><b>${trDate(r.birth_date)}</b></div>
         <div class="info"><span>Telefon</span><b>${r.phone||'—'}</b></div>
-        <div class="info"><span>E-posta</span><b>${r.email||'—'}</b></div>
       </div>
     </div>
 
@@ -1417,38 +1639,34 @@ function openResidentDetail(r){
     </div>
 
     <div class="cardSection">
-      <h4>Aile / Yakın Bilgileri</h4>
+      <h4>Acil Kişi Bilgileri</h4>
       <div class="infoGrid">
-        <div class="info"><span>Anne</span><b>${r.mother_name||'—'} ${r.mother_phone?'· '+r.mother_phone:''}</b></div>
-        <div class="info"><span>Baba</span><b>${r.father_name||'—'} ${r.father_phone?'· '+r.father_phone:''}</b></div>
-        <div class="info"><span>Anne İkamet Adresi</span><b>${r.mother_address||'—'}</b></div>
-        <div class="info"><span>Baba İkamet Adresi</span><b>${r.father_address||'—'}</b></div>
-        <div class="info"><span>Yakınlık</span><b>${r.emergency_contact_relation||'—'}</b></div>
-        <div class="info"><span>Yakının Telefonu</span><b>${r.emergency_contact_phone||'—'}</b></div>
+        <div class="info"><span>Acil Kişi 1</span><b>${r.mother_name||'—'} ${r.mother_phone?'· '+r.mother_phone:''}</b><span>${r.mother_address||'—'}</span></div>
+        <div class="info"><span>Acil Kişi 2</span><b>${r.father_name||'—'} ${r.father_phone?'· '+r.father_phone:''}</b><span>${r.father_address||'—'}</span></div>
       </div>
     </div>`;
 
-  const rr=(state.rentRates||[])
-    .filter(x=>x.resident_id===r.id || x.stay_id===s?.id)
-    .sort((a,b)=>String(b.effective_date||b.start_date||'').localeCompare(String(a.effective_date||a.start_date||'')))[0];
-
-  const rentAmount=rr?.rent_amount ?? rr?.monthly_rent ?? rr?.amount ?? '—';
-  const paymentDay=rr?.payment_day ?? rr?.due_day ?? 5;
-  const feeAmount=s?feeForStay(s):Number(rr?.fee_amount ?? rr?.monthly_fee ?? 0);
-  const netRentAmount=rentAmount==='—'?'—':Math.max(0,Number(rentAmount||0)-Number(feeAmount||0));
+  const fin=s?financialForStay(s):{rr:null,c:null,rent:0,fee:0,deposit:0,paymentDay:5};
+  const rentAmount=fin.rent;
+  const paymentDay=fin.paymentDay;
+  const feeAmount=fin.fee;
+  const depositAmount=fin.deposit;
+  const netRentAmount=Math.max(0,Number(rentAmount||0)-Number(feeAmount||0));
   const residentAccrual=s?(state.accruals||[]).find(x=>String(x.stay_id)===String(s.id)):null;
   const residentPaid=residentAccrual?paymentForAccrual(residentAccrual.id):0;
   const residentDebt=residentAccrual?Math.max(0,Number(residentAccrual.total_amount??rentAmount??0)-residentPaid):0;
+  const hasFinance=!!(fin.rr||fin.c||rentAmount||depositAmount);
 
   $('#residentRentBlock').innerHTML=`
-    <div class="rentBox"><span>Aylık Toplam Bedel (Aidat Dahil)</span><b>${rentAmount==='—'?'—':fmt(rentAmount)}</b></div>
-    <div class="rentBox"><span>Ödeme Günü</span><b>${paymentDay==='—'?'—':'Her ayın '+paymentDay+'. günü'}</b></div>
+    <div class="rentBox"><span>Aylık Toplam Bedel (Aidat Dahil)</span><b>${rentAmount>0?fmt(rentAmount):'—'}</b></div>
+    <div class="rentBox"><span>Ödeme Günü</span><b>${paymentDay?'Her ayın '+paymentDay+'. günü':'—'}</b></div>
     <div class="rentBox"><span>Aidat</span><b>${fmt(feeAmount)}</b></div>
-    <div class="rentBox"><span>Net Kira</span><b>${netRentAmount==='—'?'—':fmt(netRentAmount)}</b></div>
+    <div class="rentBox"><span>Net Kira</span><b>${rentAmount>0?fmt(netRentAmount):'—'}</b></div>
+    <div class="rentBox"><span>Depozito</span><b>${fmt(depositAmount)}</b></div>
     <div class="rentBox"><span>Bu Dönem Tahsil Edilen</span><b>${fmt(residentPaid)}</b></div>
     <div class="rentBox"><span>Bu Dönem Kalan Borç</span><b>${fmt(residentDebt)}</b></div>
     <div class="rentBox"><span>Kira Bitiş Tarihi / Daire Boşalma</span><b>${trDate(rentEndDate)}</b></div>
-    <div class="rentBox"><span>Durum</span><b>${rr?'Aktif kira kaydı':'Kira kaydı yok'}</b></div>`;
+    <div class="rentBox"><span>Durum</span><b>${hasFinance?'Aktif kira kaydı':'Kira kaydı yok'}</b></div>`;
 
   const contracts=(state.contracts||[]).filter(x=>x.resident_id===r.id || x.stay_id===s?.id);
   const evacs=(state.evacuations||[]).filter(x=>x.resident_id===r.id || x.stay_id===s?.id);
@@ -1607,14 +1825,12 @@ async function saveContractFlow(){
       rentResult=attempt;
     }
   } else {
-    for(const payload of rentCandidates){
-      const attempt=await sb.from('rent_rates').insert(payload);
-      if(!attempt.error){ rentResult=attempt; break; }
-      rentErrors.push(attempt.error.message);
-    }
+    let sample=firstSchemaRow(state.rentRates);
+    if(!sample){const sr=await sb.from('rent_rates').select('*').limit(1);if(!sr.error)sample=firstSchemaRow(sr.data);}
+    const payload=makeRentPayloadFromSchema(sample,s,r.id,rent,fee,payDay,start);
+    if(payload){const attempt=await sb.from('rent_rates').insert(payload);if(!attempt.error)rentResult=attempt;else rentErrors.push(attempt.error.message);}
     if(!rentResult){
-      $('#contractFlowMsg').textContent='Kira kaydı hatası: rent_rates tablo alanları mevcut programla eşleşmiyor.';
-      console.error('rent_rates denemeleri:',rentErrors);
+      $('#contractFlowMsg').textContent='Kira kaydı hatası: '+(rentErrors.at(-1)||'rent_rates tablo şeması belirlenemedi.');
       return;
     }
   }
@@ -1692,23 +1908,11 @@ async function saveContractFlow(){
       if(cRes.error){$('#contractFlowMsg').textContent='Sözleşme güncelleme hatası: '+cRes.error.message;return;}
     }
   } else {
-    const contractErrors=[];
-    const statusOptions=[undefined,'TASLAK','AKTIF'];
-    outer:
-    for(const detail of contractDetailVariants){
-      for(const statusValue of statusOptions){
-        const payload={...contractBase,...detail};
-        if(statusValue!==undefined) payload.status=statusValue;
-        const attempt=await sb.from('contracts').insert(payload);
-        if(!attempt.error){ cRes=attempt; break outer; }
-        contractErrors.push(attempt.error.message);
-      }
-    }
-    if(!cRes){
-      console.error('contracts denemeleri:',contractErrors);
-      $('#contractFlowMsg').textContent='Kira kaydı oluştu; sözleşme kaydı hatası: '+(contractErrors.at(-1)||'Bilinmeyen hata');
-      return;
-    }
+    let sample=firstSchemaRow(state.contracts);
+    if(!sample){const sr=await sb.from('contracts').select('*').limit(1);if(!sr.error)sample=firstSchemaRow(sr.data);}
+    const payload=makeContractPayloadFromSchema(sample,s,r.id,s.apartment_id,rent,fee,deposit,start,end,notesFull);
+    if(payload){const attempt=await sb.from('contracts').insert(payload);if(!attempt.error)cRes=attempt;else $('#contractFlowMsg').textContent='Kira kaydı oluştu; sözleşme kaydı hatası: '+attempt.error.message;}
+    if(!cRes){if(!$('#contractFlowMsg').textContent.includes('hatası'))$('#contractFlowMsg').textContent='Kira kaydı oluştu; sözleşme tablo şeması belirlenemedi.';return;}
   }
 
   // Aylık kira değiştiğinde Ana Panelin kullandığı tahakkuk satırı da güncellenmelidir.
@@ -1837,8 +2041,7 @@ function openContractDocument(residentId,contractId,signatureMode=false){
   const paymentDay=rr.payment_day??rr.due_day??Number(nd.paymentDay||5);
   const aptNo=a?.apartment_no||'—', floor=a?.floor_name||'—';
   const tenant=residentName(r)||'—';
-  const tenantAddress=r.address||r.residence_address||r.mother_address||'—';
-  const tc=r.tc_no||r.tc_identity_no||r.identity_no||r.tckn||'—';
+  const tc=r.tc_no||r.tc_identity_no||r.identity_no||r.tckn||r.email||'—';
   const depositText=moneyPlain(deposit), rentText=moneyPlain(rent), feeText=moneyPlain(fee);
   const body=`
   <section class="contractPage page1">
@@ -1853,15 +2056,15 @@ function openContractDocument(residentId,contractId,signatureMode=false){
       <tr><th colspan="2">KİRALAYAN BİLGİLERİ</th><th colspan="2">KİRA BİLGİLERİ</th></tr>
       <tr><td class="label">TC KİMLİK NO</td><td>${escHtml(tc)}</td><td class="label">1 AYLIK NET KİRA</td><td>${rentText}</td></tr>
       <tr><td class="label">TELEFON NO</td><td>${escHtml(r.phone||'—')}</td><td class="label">${totalRentLabel}</td><td>${monthCount?moneyPlain(rent*monthCount):'—'}</td></tr>
-      <tr><td class="label">KANUNİ İKAMETGATI</td><td>${escHtml(tenantAddress)}</td><td class="label">1.AYLIK AİDAT</td><td>${feeText}</td></tr>
+      <tr><td></td><td></td><td class="label">1.AYLIK AİDAT</td><td>${feeText}</td></tr>
       <tr><td></td><td></td><td class="label">${totalFeeLabel}</td><td>${monthCount?moneyPlain(fee*monthCount):'—'}</td></tr>
-      <tr><th colspan="2">YAKINLARI</th><td class="label">KİRA MÜDDETİ</td><td>${start&&end?trDate(start)+' - '+trDate(end):'—'}</td></tr>
-      <tr><td class="label">ANNE TEL</td><td>${escHtml(r.mother_phone||'—')}</td><td class="label">KİRA BAŞLANGICI</td><td>${trDate(start)}</td></tr>
-      <tr><td class="label">ANNE TC NO</td><td>—</td><td class="label">KİRA BİTİMİ</td><td>${trDate(end)}</td></tr>
-      <tr><td class="label">BABA TEL</td><td>${escHtml(r.father_phone||'—')}</td><td class="label">BANKA ADI</td><td>${escHtml(bank)}</td></tr>
-      <tr><td class="label">BABA TC NO</td><td>—</td><td class="label">İBAN NO</td><td>${escHtml(iban)}</td></tr>
-      <tr><td class="label">KEFİL TC NO</td><td>—</td><td class="label">HESAP SAHİBİ</td><td>${escHtml(holder)}</td></tr>
-      <tr><td class="label">KEFİL TEL</td><td>—</td><td class="label">ÖDEME ŞEKLİ</td><td>Her ayın 01-${String(paymentDay).padStart(2,'0')} günleri arasında peşin</td></tr>
+      <tr><td></td><td></td><td class="label">KİRA MÜDDETİ</td><td>${start&&end?trDate(start)+' - '+trDate(end):'—'}</td></tr>
+      <tr><td></td><td></td><td class="label">KİRA BAŞLANGICI</td><td>${trDate(start)}</td></tr>
+      <tr><td></td><td></td><td class="label">KİRA BİTİMİ</td><td>${trDate(end)}</td></tr>
+      <tr><td></td><td></td><td class="label">BANKA ADI</td><td>${escHtml(bank)}</td></tr>
+      <tr><td></td><td></td><td class="label">İBAN NO</td><td>${escHtml(iban)}</td></tr>
+      <tr><td></td><td></td><td class="label">HESAP SAHİBİ</td><td>${escHtml(holder)}</td></tr>
+      <tr><td></td><td></td><td class="label">ÖDEME ŞEKLİ</td><td>Her ayın 01-${String(paymentDay).padStart(2,'0')} günleri arasında peşin</td></tr>
     </table>
     <table class="ctable" style="margin-top:10px"><tr><td class="label">KİRALANAN YERİN ŞİMDİKİ DURUMU</td><td>EŞYALI , YENİ BOYALI KONUT</td></tr><tr><td class="label">KİRALANAN YERİN KUL. AMACI/ CİNSİ</td><td>KONUT OLARAK</td></tr></table>
     <div class="sectionTitle">TESLİM ALINAN DEMİRBAŞLAR</div>
@@ -2001,6 +2204,17 @@ function fillEditApartmentOptions(currentApartmentId){
     });
 }
 
+function getEmergencyRelation(selectId,otherId){
+  const v=$('#'+selectId)?.value||'';
+  return v==='DIGER' ? ($('#'+otherId)?.value.trim()||'') : v;
+}
+function setEmergencyRelation(selectId,otherId,value){
+  const sel=$('#'+selectId), other=$('#'+otherId); if(!sel||!other)return;
+  const val=String(value||'');
+  const known=[...sel.options].some(o=>o.value===val && val!=='DIGER');
+  if(known){sel.value=val;other.value='';}else if(val){sel.value='DIGER';other.value=val;}else{sel.value='';other.value='';}
+}
+
 function openResidentEditorById(residentId){
   const r=state.residents.find(x=>x.id===residentId);
   if(!r) return;
@@ -2011,20 +2225,27 @@ function openResidentEditorById(residentId){
   $('#editResidentSave').dataset.residentId=r.id;
   $('#erFirstName').value=r.first_name||'';
   $('#erLastName').value=r.last_name||'';
+  $('#erTcNo').value=residentTcValue(r)==='—'?'':residentTcValue(r);
   $('#erGender').value=r.gender||'';
-  $('#erBirthDate').value=r.birth_date||'';
   $('#erPhone').value=r.phone||'';
-  $('#erEmail').value=r.email||'';
-  $('#erMotherName').value=r.mother_name||'';
-  $('#erMotherPhone').value=r.mother_phone||'';
-  $('#erMotherAddress').value=r.mother_address||'';
-  $('#erFatherName').value=r.father_name||'';
-  $('#erFatherPhone').value=r.father_phone||'';
-  $('#erFatherAddress').value=r.father_address||'';
-  $('#erEmergencyRelation').value=r.emergency_contact_relation||'';
-  $('#erEmergencyPhone').value=r.emergency_contact_phone||'';
+  $('#erEmergency1Name').value=r.mother_name||'';
+  $('#erEmergency1Phone').value=r.mother_phone||'';
+  setEmergencyRelation('erEmergency1Relation','erEmergency1RelationOther',r.mother_address||'');
+  $('#erEmergency2Name').value=r.father_name||'';
+  $('#erEmergency2Phone').value=r.father_phone||'';
+  setEmergencyRelation('erEmergency2Relation','erEmergency2RelationOther',r.father_address||'');
   fillEditApartmentOptions(s?.apartment_id||'');
   $('#erStartDate').value=stayStartDate(s)==='—'?'':stayStartDate(s);
+  const fin=financialForStay(s);
+  $('#erRentAmount').value=fin.rent||'';
+  $('#erFeeAmount').value=fin.fee||0;
+  $('#erPaymentDay').value=fin.paymentDay||5;
+  $('#erDepositAmount').value=fin.deposit||0;
+  $('#erContractStart').value=fin.start||$('#erStartDate').value||'';
+  $('#erContractEnd').value=fin.end||'';
+  $('#erDepositReceivedDate').value=fin.depositReceivedDate||fin.start||$('#erStartDate').value||'';
+  $('#erDepositMethod').value=fin.depositMethod||'';
+  $('#erDepositNote').value=fin.depositNote||'';
   $('#editResidentMsg').textContent='';
   $('#editResidentModal').classList.add('open');
 }
@@ -2038,58 +2259,117 @@ async function saveResidentEditor(){
   const apartmentId=$('#erApartment').value;
   const newApt=state.apartments.find(a=>a.id===apartmentId);
   const currentAptId=s.apartment_id;
-
   if(apartmentId!==currentAptId){
     const st=apartmentStatus(apartmentId);
-    if(st.occ>=Number(newApt.capacity||0)){
+    if(st.occ>=Number(newApt?.capacity||0)){
       $('#editResidentMsg').textContent='Seçilen dairenin boş kapasitesi yok.';
       return;
     }
   }
 
+  const oldFin=financialForStay(s);
+  const rentRaw=$('#erRentAmount').value.trim(), feeRaw=$('#erFeeAmount').value.trim(), depositRaw=$('#erDepositAmount').value.trim();
+  const rent=Math.max(0,rentRaw===''?Number(oldFin.rent||0):Number(rentRaw));
+  const fee=Math.max(0,feeRaw===''?Number(oldFin.fee||0):Number(feeRaw));
+  const deposit=Math.max(0,depositRaw===''?Number(oldFin.deposit||0):Number(depositRaw));
+  const payDay=Math.min(31,Math.max(1,Number($('#erPaymentDay').value||5)));
+  const contractStart=$('#erContractStart').value||$('#erStartDate').value||null;
+  const contractEnd=$('#erContractEnd').value||null;
+  const depositReceivedDate=$('#erDepositReceivedDate').value||'';
+  const depositMethod=$('#erDepositMethod').value||'';
+  const depositNote=$('#erDepositNote').value.trim();
+
   $('#editResidentMsg').textContent='Kaydediliyor...';
 
   const residentPayload={
-    first_name:$('#erFirstName').value.trim(),
-    last_name:$('#erLastName').value.trim(),
-    gender:$('#erGender').value||null,
-    birth_date:$('#erBirthDate').value||null,
-    phone:$('#erPhone').value.trim()||null,
-    email:$('#erEmail').value.trim()||null,
-    mother_name:$('#erMotherName').value.trim()||null,
-    mother_phone:$('#erMotherPhone').value.trim()||null,
-    mother_address:$('#erMotherAddress').value.trim()||null,
-    father_name:$('#erFatherName').value.trim()||null,
-    father_phone:$('#erFatherPhone').value.trim()||null,
-    father_address:$('#erFatherAddress').value.trim()||null,
-    emergency_contact_relation:$('#erEmergencyRelation').value.trim()||null,
-    emergency_contact_phone:$('#erEmergencyPhone').value.trim()||null
+    first_name:$('#erFirstName').value.trim(), last_name:$('#erLastName').value.trim(),
+    gender:$('#erGender').value||null, phone:$('#erPhone').value.trim()||null,
+    birth_date:null,
+    mother_name:$('#erEmergency1Name').value.trim()||null, mother_phone:$('#erEmergency1Phone').value.trim()||null,
+    mother_address:getEmergencyRelation('erEmergency1Relation','erEmergency1RelationOther')||null,
+    father_name:$('#erEmergency2Name').value.trim()||null, father_phone:$('#erEmergency2Phone').value.trim()||null,
+    father_address:getEmergencyRelation('erEmergency2Relation','erEmergency2RelationOther')||null,
+    emergency_contact_relation:null, emergency_contact_phone:null
   };
+  const tcValue=$('#erTcNo').value.trim()||null;
+  if('tc_no' in r) residentPayload.tc_no=tcValue;
+  else if('tc_identity_no' in r) residentPayload.tc_identity_no=tcValue;
+  else if('identity_no' in r) residentPayload.identity_no=tcValue;
+  else if('tckn' in r) residentPayload.tckn=tcValue;
+  else if('national_id' in r) residentPayload.national_id=tcValue;
+  else residentPayload.email=tcValue;
 
   const {error:rErr}=await sb.from('residents').update(residentPayload).eq('id',residentId);
-  if(rErr){
-    $('#editResidentMsg').textContent='Konaklayan güncelleme hatası: '+rErr.message;
-    return;
+  if(rErr){$('#editResidentMsg').textContent='Konaklayan güncelleme hatası: '+rErr.message;return;}
+
+  let sErr=null;
+  const editStart=$('#erStartDate').value;
+  const stayPatches=editStart ? [
+    {apartment_id:apartmentId,check_in_date:editStart},{apartment_id:apartmentId,entry_date:editStart},
+    {apartment_id:apartmentId,move_in_date:editStart},{apartment_id:apartmentId,start_date:editStart},{apartment_id:apartmentId}
+  ] : [{apartment_id:apartmentId}];
+  for(const patch of stayPatches){const retry=await sb.from('stays').update(patch).eq('id',s.id);if(!retry.error){sErr=null;break;}sErr=retry.error;}
+  if(sErr){$('#editResidentMsg').textContent='Konaklama güncelleme hatası: '+sErr.message;return;}
+
+  let financeWarnings=[];
+  const rentRows=currentRows(state.rentRates,residentId,s.id);
+  let rentSaved=false;
+  if(rentRows.length){
+    for(const row of rentRows){
+      const patch={};
+      if('rent_amount' in row)patch.rent_amount=rent; else if('monthly_rent' in row)patch.monthly_rent=rent; else if('monthly_amount' in row)patch.monthly_amount=rent; else if('amount' in row)patch.amount=rent;
+      if('payment_day' in row)patch.payment_day=payDay; else if('due_day' in row)patch.due_day=payDay;
+      if('fee_amount' in row)patch.fee_amount=fee; else if('monthly_fee' in row)patch.monthly_fee=fee;
+      if('deposit_amount' in row)patch.deposit_amount=deposit;
+      if(contractStart){if('valid_from' in row)patch.valid_from=contractStart; else if('effective_date' in row)patch.effective_date=contractStart; else if('start_date' in row)patch.start_date=contractStart;}
+      const res=await sb.from('rent_rates').update(patch).eq('id',row.id); if(res.error){financeWarnings.push('Kira güncellenemedi: '+res.error.message);break;} rentSaved=true;
+    }
+  }else if(rent>0){
+    let sample=firstSchemaRow(state.rentRates);
+    if(!sample){const sr=await sb.from('rent_rates').select('*').limit(1);if(!sr.error)sample=firstSchemaRow(sr.data);}
+    const payload=makeRentPayloadFromSchema(sample,s,residentId,rent,fee,payDay,contractStart);
+    if(payload){const res=await sb.from('rent_rates').insert(payload);if(!res.error)rentSaved=true;else financeWarnings.push('Kira ana kaydı oluşturulamadı: '+res.error.message);}
+    else financeWarnings.push('Kira ana kaydı oluşturulamadı: rent_rates tablosunda kira tutarı sütunu belirlenemedi.');
   }
 
-  const stayPayload={apartment_id:apartmentId};
-  if($('#erStartDate').value) stayPayload.start_date=$('#erStartDate').value;
+  const apt=state.apartments.find(a=>a.id===apartmentId);
+  const contractRows=currentRows(state.contracts,residentId,s.id);
+  const currentContract=newestRow(contractRows);
+  const nd=contractNotesData(currentContract);
+  let notes=currentContract?.notes||buildContractNotes({rent,fee,deposit,start:contractStart,end:contractEnd,landlord:nd.landlord||'ALİ ERCAN AYDOĞAN',bank:nd.bank||'Akbank Trabzon Şubesi',iban:nd.iban||'TR 97 0004 6001 0088 8000 0045 49',holder:nd.holder||'ALİ ERCAN AYDOĞAN',paymentDay:payDay,aptNo:apt?.apartment_no||''});
+  [['KIRA',rent],['AIDAT',fee],['DEPOZITO',deposit],['BASLANGIC',contractStart||''],['BITIS',contractEnd||''],['ODEME_GUNU',payDay],['DAIRE',apt?.apartment_no||''],['DEPOZITO_ALIM_TARIHI',depositReceivedDate],['DEPOZITO_YONTEM',depositMethod],['DEPOZITO_NOT',depositNote]].forEach(([k,v])=>{notes=mergeContractNoteField(notes,k,v)});
 
-  let {error:sErr}=await sb.from('stays').update(stayPayload).eq('id',s.id);
-  if(sErr && $('#erStartDate').value){
-    // Older test records may use a different date column. Retry only the apartment change.
-    const retry=await sb.from('stays').update({apartment_id:apartmentId}).eq('id',s.id);
-    sErr=retry.error;
-  }
-  if(sErr){
-    $('#editResidentMsg').textContent='Konaklama güncelleme hatası: '+sErr.message;
-    return;
+  let contractSaved=false;
+  if(contractRows.length){
+    for(const row of contractRows){
+      const patch={};
+      if('apartment_id' in row)patch.apartment_id=apartmentId;
+      if('contract_start_date' in row)patch.contract_start_date=contractStart; else if('start_date' in row)patch.start_date=contractStart;
+      if('contract_end_date' in row)patch.contract_end_date=contractEnd; else if('end_date' in row)patch.end_date=contractEnd;
+      if('monthly_rent' in row)patch.monthly_rent=rent; if('fee_amount' in row)patch.fee_amount=fee; if('deposit_amount' in row)patch.deposit_amount=deposit; if('notes' in row)patch.notes=notes;
+      const res=await sb.from('contracts').update(patch).eq('id',row.id); if(res.error){financeWarnings.push('Sözleşme/depozito güncellenemedi: '+res.error.message);break;} contractSaved=true;
+    }
+  }else if(rent>0||deposit>0){
+    let sample=firstSchemaRow(state.contracts);
+    if(!sample){const sr=await sb.from('contracts').select('*').limit(1);if(!sr.error)sample=firstSchemaRow(sr.data);}
+    const payload=makeContractPayloadFromSchema(sample,s,residentId,apartmentId,rent,fee,deposit,contractStart,contractEnd,notes);
+    if(payload){const res=await sb.from('contracts').insert(payload);if(!res.error)contractSaved=true;else financeWarnings.push('Sözleşme/depozito kaydı oluşturulamadı: '+res.error.message);}
+    else financeWarnings.push('Sözleşme/depozito kaydı oluşturulamadı: contracts tablo şeması belirlenemedi.');
   }
 
-  $('#editResidentMsg').textContent='Kaydedildi.';
-  await loadAll();
-  renderResidents();
-  setTimeout(()=>$('#editResidentModal').classList.remove('open'),450);
+  // Düzenleme ile eksik giriş ayı tahakkukunu onar. Tahsil edilmiş satırlara dokunma.
+  if(rent>0&&(rentSaved||contractSaved)&&contractStart){
+    const d=new Date(String(contractStart).slice(0,10)+'T00:00:00'), year=d.getFullYear(), month=d.getMonth()+1;
+    if(Number.isFinite(year)&&Number.isFinite(month)){
+      try{await ensureMonthlyAccrual(s,year,month,rent,{preservePaid:true});}catch(e){financeWarnings.push('Tahakkuk oluşturulamadı: '+e.message);}
+    }
+  }
+
+  await loadAll(); renderResidents();
+  const fresh=state.residents.find(x=>x.id===residentId);
+  if(financeWarnings.length){$('#editResidentMsg').textContent='Kişisel bilgiler kaydedildi. '+financeWarnings.join(' · ');return;}
+  $('#editResidentMsg').textContent='Kiracı kartı ve mali bilgiler kaydedildi.';
+  setTimeout(()=>{ $('#editResidentModal').classList.remove('open'); if(fresh)openResidentDetail(fresh); },450);
 }
 
 async function completeKbsEntry(residentId){
@@ -2150,8 +2430,8 @@ function fillResidentApartmentOptions(){
 function openNewResident(){
   fillResidentApartmentOptions();
   $('#nrStartDate').value=new Date().toISOString().slice(0,10);
-  ['nrFirstName','nrLastName','nrPhone','nrEmail','nrMotherName','nrMotherPhone','nrMotherAddress','nrFatherName','nrFatherPhone','nrFatherAddress','nrEmergencyRelation','nrEmergencyPhone'].forEach(id=>$('#'+id).value='');
-  $('#nrGender').value=''; $('#nrBirthDate').value='';
+  ['nrFirstName','nrLastName','nrTcNo','nrPhone','nrEmergency1Name','nrEmergency1Phone','nrEmergency1RelationOther','nrEmergency2Name','nrEmergency2Phone','nrEmergency2RelationOther'].forEach(id=>$('#'+id).value='');
+  $('#nrGender').value=''; $('#nrEmergency1Relation').value=''; $('#nrEmergency2Relation').value='';
   $('#nrRentAmount').value=''; $('#nrPaymentDay').value='5'; $('#nrFeeAmount').value='0'; $('#nrDepositAmount').value='0';
   $('#nrContractStart').value=$('#nrStartDate').value; $('#nrContractEnd').value=''; $('#nrDepositReceivedDate').value=$('#nrStartDate').value;
   $('#nrDepositMethod').value=''; $('#nrDepositNote').value='';
@@ -2286,18 +2566,25 @@ async function saveNewResident(){
     first_name:first,
     last_name:last,
     gender:$('#nrGender').value||null,
-    birth_date:$('#nrBirthDate').value||null,
     phone:$('#nrPhone').value.trim()||null,
-    email:$('#nrEmail').value.trim()||null,
-    mother_name:$('#nrMotherName').value.trim()||null,
-    mother_phone:$('#nrMotherPhone').value.trim()||null,
-    mother_address:$('#nrMotherAddress').value.trim()||null,
-    father_name:$('#nrFatherName').value.trim()||null,
-    father_phone:$('#nrFatherPhone').value.trim()||null,
-    father_address:$('#nrFatherAddress').value.trim()||null,
-    emergency_contact_relation:$('#nrEmergencyRelation').value.trim()||null,
-    emergency_contact_phone:$('#nrEmergencyPhone').value.trim()||null
+    birth_date:null,
+    mother_name:$('#nrEmergency1Name').value.trim()||null,
+    mother_phone:$('#nrEmergency1Phone').value.trim()||null,
+    mother_address:getEmergencyRelation('nrEmergency1Relation','nrEmergency1RelationOther')||null,
+    father_name:$('#nrEmergency2Name').value.trim()||null,
+    father_phone:$('#nrEmergency2Phone').value.trim()||null,
+    father_address:getEmergencyRelation('nrEmergency2Relation','nrEmergency2RelationOther')||null,
+    emergency_contact_relation:null,
+    emergency_contact_phone:null
   };
+  const tcValue=$('#nrTcNo').value.trim()||null;
+  const residentSample=(state.residents||[])[0]||{};
+  if('tc_no' in residentSample) residentPayload.tc_no=tcValue;
+  else if('tc_identity_no' in residentSample) residentPayload.tc_identity_no=tcValue;
+  else if('identity_no' in residentSample) residentPayload.identity_no=tcValue;
+  else if('tckn' in residentSample) residentPayload.tckn=tcValue;
+  else if('national_id' in residentSample) residentPayload.national_id=tcValue;
+  else residentPayload.email=tcValue;
 
   let {data:rData,error:rErr}=await sb.from('residents').insert(residentPayload).select('*').single();
   if(rErr){
@@ -2307,11 +2594,22 @@ async function saveNewResident(){
 
   const year=Number($('#yearSelect').value);
   const yearId=state.years.find(y=>y.year===year)?.id;
-  const stayPayload={resident_id:rData.id, apartment_id:apartmentId, year_id:yearId, start_date:start, is_active:true};
-  let {data:sData,error:sErr}=await sb.from('stays').insert(stayPayload).select('*').single();
-  if(sErr){
+  let sData=null, sErr=null;
+  const stayPayloads=[
+    {resident_id:rData.id,apartment_id:apartmentId,year_id:yearId,check_in_date:start,is_active:true},
+    {resident_id:rData.id,apartment_id:apartmentId,year_id:yearId,entry_date:start,is_active:true},
+    {resident_id:rData.id,apartment_id:apartmentId,year_id:yearId,move_in_date:start,is_active:true},
+    {resident_id:rData.id,apartment_id:apartmentId,year_id:yearId,start_date:start,is_active:true},
+    {resident_id:rData.id,apartment_id:apartmentId,year_id:yearId,is_active:true}
+  ];
+  for(const stayPayload of stayPayloads){
+    const sr=await sb.from('stays').insert(stayPayload).select('*').single();
+    if(!sr.error){sData=sr.data;sErr=null;break;}
+    sErr=sr.error;
+  }
+  if(sErr||!sData){
     await sb.from('residents').delete().eq('id',rData.id);
-    $('#newResidentMsg').textContent='Konaklama kaydı hatası: '+sErr.message;
+    $('#newResidentMsg').textContent='Konaklama kaydı hatası: '+(sErr?.message||'Bilinmeyen hata');
     return;
   }
 
@@ -2324,16 +2622,16 @@ async function saveNewResident(){
   });
 
   let financeWarning='';
+
+  // Kira kaydı: mevcut gerçek rent_rates şemasındaki sütunlar kullanılır.
+  let rentSaved=false, rentLastError=null;
   if(rent>0){
-    const rentPayloads=[
-      {resident_id:rData.id,stay_id:sData.id,monthly_rent:rent,payment_day:payDay,valid_from:contractStart,is_active:true},
-      {resident_id:rData.id,stay_id:sData.id,rent_amount:rent,payment_day:payDay,start_date:contractStart,is_active:true},
-      {resident_id:rData.id,stay_id:sData.id,monthly_amount:rent,start_date:contractStart,is_active:true},
-      {resident_id:rData.id,stay_id:sData.id,amount:rent,start_date:contractStart,is_active:true}
-    ];
-    let rentSaved=false;
-    for(const p of rentPayloads){const rr=await sb.from('rent_rates').insert(p);if(!rr.error){rentSaved=true;break}}
-    if(!rentSaved) financeWarning+=' Kira kaydı oluşturulamadı.';
+    let sample=firstSchemaRow(state.rentRates);
+    if(!sample){const sr=await sb.from('rent_rates').select('*').limit(1);if(!sr.error)sample=firstSchemaRow(sr.data);}
+    const payload=makeRentPayloadFromSchema(sample,sData,rData.id,rent,fee,payDay,contractStart);
+    if(payload){const rr=await sb.from('rent_rates').insert(payload);rentSaved=!rr.error;rentLastError=rr.error||null;}
+    else rentLastError={message:'rent_rates tablosunda kira tutarı sütunu belirlenemedi'};
+    if(!rentSaved) financeWarning+=' Kira kaydı oluşturulamadı: '+(rentLastError?.message||'şema uyuşmazlığı')+'.';
   }
 
   const activeYear=(state.years||[]).find(y=>y.is_active===true)||(state.years||[]).find(y=>String(y.year)===String($('#yearSelect').value));
@@ -2346,15 +2644,24 @@ async function saveNewResident(){
   notes=mergeContractNoteField(notes,'DEPOZITO_KESINTI','0');
   notes=mergeContractNoteField(notes,'DEPOZITO_IADE_YONTEM','');
   notes=mergeContractNoteField(notes,'DEPOZITO_IADE_NOT','');
-  const cBase={resident_id:rData.id,stay_id:sData.id,apartment_id:apartmentId,year_id:sData.year_id||activeYear?.id||null,contract_start_date:contractStart};
-  const cVariants=[
-    {...cBase,contract_end_date:contractEnd,monthly_rent:rent,fee_amount:fee,deposit_amount:deposit,notes},
-    {...cBase,contract_end_date:contractEnd,notes},
-    {...cBase,notes}
-  ];
-  let contractSaved=false;
-  for(const p of cVariants){for(const status of [undefined,'TASLAK','AKTIF']){const q={...p};if(status!==undefined)q.status=status;const cr=await sb.from('contracts').insert(q);if(!cr.error){contractSaved=true;break}}if(contractSaved)break}
-  if(!contractSaved) financeWarning+=' Sözleşme/depozito kaydı oluşturulamadı.';
+
+  let contractSaved=false, contractLastError=null;
+  let cSample=firstSchemaRow(state.contracts);
+  if(!cSample){const sr=await sb.from('contracts').select('*').limit(1);if(!sr.error)cSample=firstSchemaRow(sr.data);}
+  const cPayload=makeContractPayloadFromSchema(cSample,sData,rData.id,apartmentId,rent,fee,deposit,contractStart,contractEnd,notes);
+  if(cPayload){const cr=await sb.from('contracts').insert(cPayload);contractSaved=!cr.error;contractLastError=cr.error||null;}
+  else contractLastError={message:'contracts tablo şeması belirlenemedi'};
+  if(!contractSaved) financeWarning+=' Sözleşme/depozito kaydı oluşturulamadı: '+(contractLastError?.message||'şema uyuşmazlığı')+'.';
+
+  // Yeni konaklayan kaydedildiği anda giriş ayının tahakkukunu oluştur.
+  let accrualSaved=false, accrualLastError=null;
+  if((rentSaved||contractSaved)&&rent>0){
+    const d=new Date(String(contractStart||start).slice(0,10)+'T00:00:00');
+    const ayYear=d.getFullYear(), ayMonth=d.getMonth()+1;
+    try{await ensureMonthlyAccrual(sData,ayYear,ayMonth,rent,{preservePaid:true});accrualSaved=true;}catch(e){accrualLastError=e;}
+    if(!accrualSaved) financeWarning+=' Tahakkuk kaydı oluşturulamadı: '+(accrualLastError?.message||'şema uyuşmazlığı')+'.';
+  }
+
   if(kErr){
     $('#newResidentMsg').textContent='Kayıt oluştu; KBS kaydı eklenemedi: '+kErr.message+financeWarning;
   } else {
@@ -2363,7 +2670,7 @@ async function saveNewResident(){
 
   await loadAll();
   renderResidents();
-  setTimeout(()=>$('#newResidentModal').classList.remove('open'),500);
+  if(!financeWarning) setTimeout(()=>$('#newResidentModal').classList.remove('open'),500);
 }
 
 
@@ -2397,8 +2704,10 @@ function activeStaysForPeriod(year,month){
   const last=new Date(year,month,0), first=new Date(year,month-1,1);
   return state.stays.filter(s=>{
     const sd=new Date(String(s.start_date||s.check_in_date||s.entry_date||s.created_at||'1900-01-01').slice(0,10)+'T00:00:00');
-    const endRaw=s.end_date||s.check_out_date||s.exit_date;
+    const k=state.kbs.find(x=>String(x.stay_id)===String(s.id));
+    const endRaw=s.end_date||s.check_out_date||s.exit_date||k?.exit_notification_date||'';
     const ed=endRaw?new Date(String(endRaw).slice(0,10)+'T00:00:00'):null;
+    if(s.is_active===false&&!ed)return false;
     return sd<=last && (!ed||ed>=first);
   });
 }
@@ -2432,13 +2741,58 @@ function renderExpensePanel(){
   const paid=state.accruals.filter(a=>Number(a.accrual_year)===year&&Number(a.accrual_month)===month).reduce((s,a)=>s+paymentForAccrual(a.id),0);
   const profit=paid-total;
   $('#expenseSummary').innerHTML=`<div class="expenseStat"><small>TOPLAM TAHSİLAT</small><strong>${fmt(paid)}</strong></div><div class="expenseStat"><small>TOPLAM GİDER</small><strong>${fmt(total)}</strong></div><div class="expenseStat"><small>SABİT GİDER</small><strong>${fmt(fixed)}</strong></div><div class="expenseStat"><small>DEĞİŞKEN GİDER</small><strong>${fmt(variable)}</strong></div><div class="expenseStat"><small>KİŞİ BAŞI MALİYET (${people} KİŞİ)</small><strong>${fmt(per)}</strong></div><div class="expenseStat ${profit>=0?'profit':'loss'}"><small>NET KÂR / ZARAR</small><strong>${fmt(profit)}</strong></div>`;
-  $('#expenseRows').innerHTML=list.length?list.map(e=>{const m=expenseMeta(e);return `<tr><td>${trDate(e.expense_date)}</td><td>${m.type}</td><td>${m.desc||'—'}</td><td><span class="expenseTypeBadge ${m.fixed?'fixedBadge':''}">${m.fixed?'Sabit':'Değişken'}</span></td><td>${paymentMethodText(m.method)}</td><td>${m.doc||'—'}</td><td class="num"><b>${fmt(e.amount)}</b></td></tr>`}).join(''):'<tr><td colspan="7" style="text-align:center;color:#9fb2c6;padding:22px">Bu dönem için gider kaydı yok.</td></tr>';
+  $('#expenseRows').innerHTML=list.length?list.map(e=>{const m=expenseMeta(e);return `<tr><td>${trDate(e.expense_date)}</td><td>${m.type}</td><td>${m.desc||'—'}</td><td><span class="expenseTypeBadge ${m.fixed?'fixedBadge':''}">${m.fixed?'Sabit':'Değişken'}</span></td><td>${paymentMethodText(m.method)}</td><td>${m.doc||'—'}</td><td class="num"><b>${fmt(e.amount)}</b></td><td><div class="expenseRowActions"><button class="editExpenseBtn" data-id="${e.id}">Düzenle</button><button class="deleteExpenseBtn" data-id="${e.id}">Sil</button></div></td></tr>`}).join(''):'<tr><td colspan="8" style="text-align:center;color:#9fb2c6;padding:22px">Bu dönem için gider kaydı yok.</td></tr>';
+  document.querySelectorAll('.editExpenseBtn').forEach(b=>b.onclick=()=>openExpenseEditor(b.dataset.id));
+  document.querySelectorAll('.deleteExpenseBtn').forEach(b=>b.onclick=()=>deleteExpenseById(b.dataset.id));
 }
 async function openExpensePanel(){fillExpenseSelectors();await refreshExpensePanel()}
+function expenseSelectTypeForEditor(type){
+  const sel=$('#expenseType'); if(!sel)return;
+  const values=[...sel.options].map(o=>o.value||o.textContent);
+  if(values.includes(type)){
+    sel.value=type;
+    $('#expenseCustomType').value='';
+    $('#expenseCustomTypeWrap').style.display='none';
+  }else{
+    sel.value='__custom__';
+    $('#expenseCustomType').value=type||'';
+    $('#expenseCustomTypeWrap').style.display='block';
+  }
+}
 function openExpenseEntry(){
+  $('#expenseEntryModal').dataset.expenseId='';
+  $('#expenseEntryTitle').textContent='Yeni Gider Kaydı';
+  $('#expenseEntrySave').textContent='Kaydet';
   $('#expenseDate').value=new Date().toISOString().slice(0,10); $('#expenseAmount').value=''; $('#expenseDescription').value=''; $('#expenseDocumentNo').value=''; $('#expenseFixed').value='0';
-  $('#expenseType').value='Elektrik'; $('#expenseCustomType').value=''; $('#expenseCustomTypeWrap').style.display='none';
+  $('#expenseType').value='Elektrik'; $('#expenseCustomType').value=''; $('#expenseCustomTypeWrap').style.display='none'; $('#expenseMethod').value='NAKIT';
   $('#expenseEntryMsg').textContent=''; $('#expenseEntryModal').classList.add('open');
+}
+function openExpenseEditor(expenseId){
+  const e=(state.expenses||[]).find(x=>String(x.id)===String(expenseId));
+  if(!e){alert('Gider kaydı bulunamadı. Listeyi yenileyip tekrar deneyin.');return}
+  const m=expenseMeta(e);
+  $('#expenseEntryModal').dataset.expenseId=String(e.id);
+  $('#expenseEntryTitle').textContent='Gider Kaydını Düzenle';
+  $('#expenseEntrySave').textContent='Değişiklikleri Kaydet';
+  $('#expenseDate').value=String(e.expense_date||'').slice(0,10);
+  $('#expenseAmount').value=Number(e.amount||0);
+  expenseSelectTypeForEditor(m.type);
+  $('#expenseMethod').value=['NAKIT','BANKA','KREDI_KARTI'].includes(String(m.method||'').toUpperCase())?String(m.method).toUpperCase():'NAKIT';
+  $('#expenseFixed').value=m.fixed?'1':'0';
+  $('#expenseDocumentNo').value=m.doc||'';
+  $('#expenseDescription').value=m.desc||'';
+  $('#expenseEntryMsg').textContent='';
+  $('#expenseEntryModal').classList.add('open');
+}
+function expenseWriteCandidates({yearId,date,amount,type,method,fixed,doc,desc}){
+  const meta=`[SEIDA_EXPENSE_META]${JSON.stringify({type,method,fixed,doc,desc})}[/SEIDA_EXPENSE_META]`;
+  return [
+    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type,expense_type:type,payment_method:method,is_fixed:fixed,document_no:doc||null,description:desc||null,payment_status:'ODENDI'},
+    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type,payment_method:method,is_fixed:fixed,invoice_no:doc||null,description:desc||null,payment_status:'ODENDI'},
+    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type,description:(desc?desc+' ':'')+meta,payment_status:'ODENDI'},
+    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type,description:(desc?desc+' ':'')+meta},
+    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type}
+  ];
 }
 async function saveExpenseEntry(){
   const amount=Number($('#expenseAmount').value||0), date=$('#expenseDate').value, selectedType=$('#expenseType').value, method=$('#expenseMethod').value, fixed=$('#expenseFixed').value==='1', doc=$('#expenseDocumentNo').value.trim(), desc=$('#expenseDescription').value.trim();
@@ -2450,31 +2804,37 @@ async function saveExpenseEntry(){
   const expenseYear=Number(String(date).slice(0,4));
   const yearRow=(state.years||[]).find(y=>Number(y.year)===expenseYear);
   const yearId=yearRow?.id;
-  if(!yearId){
-    $('#expenseEntryMsg').textContent=`Kayıt hatası: ${expenseYear} yılı için yıl kaydı bulunamadı.`;
-    return;
-  }
+  if(!yearId){$('#expenseEntryMsg').textContent=`Kayıt hatası: ${expenseYear} yılı için yıl kaydı bulunamadı.`;return}
 
-  $('#expenseEntryMsg').textContent='Kaydediliyor...';
-  const meta=`[SEIDA_EXPENSE_META]${JSON.stringify({type,method,fixed,doc,desc})}[/SEIDA_EXPENSE_META]`;
-  const candidates=[
-    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type,expense_type:type,payment_method:method,is_fixed:fixed,document_no:doc||null,description:desc||null,payment_status:'ODENDI'},
-    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type,payment_method:method,is_fixed:fixed,invoice_no:doc||null,description:desc||null,payment_status:'ODENDI'},
-    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type,description:(desc?desc+' ':'')+meta,payment_status:'ODENDI'},
-    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type,description:(desc?desc+' ':'')+meta},
-    {year_id:yearId,expense_date:date,amount,expense_name:type,category:type}
-  ];
-  let lastErr=null;
+  const expenseId=$('#expenseEntryModal').dataset.expenseId||'';
+  $('#expenseEntrySave').disabled=true;
+  $('#expenseEntryMsg').textContent=expenseId?'Güncelleniyor...':'Kaydediliyor...';
+  const candidates=expenseWriteCandidates({yearId,date,amount,type,method,fixed,doc,desc});
+  let lastErr=null,saved=false;
   for(const row of candidates){
-    const {error}=await sb.from('expenses').insert(row);
-    if(!error){lastErr=null;break}
+    const q=expenseId?sb.from('expenses').update(row).eq('id',expenseId):sb.from('expenses').insert(row);
+    const {error}=await q;
+    if(!error){lastErr=null;saved=true;break}
     lastErr=error;
     if(!/column|schema cache|could not find|null value|not-null|not null|violates not-null constraint/i.test(String(error.message||''))) break;
   }
-  if(lastErr){$('#expenseEntryMsg').textContent='Kayıt hatası: '+lastErr.message;return}
-  $('#expenseEntryMsg').textContent='Gider kaydedildi.';
+  $('#expenseEntrySave').disabled=false;
+  if(!saved||lastErr){$('#expenseEntryMsg').textContent=(expenseId?'Güncelleme':'Kayıt')+' hatası: '+(lastErr?.message||'Bilinmeyen hata');return}
+  $('#expenseEntryMsg').textContent=expenseId?'Gider kaydı güncellendi.':'Gider kaydedildi.';
   await refreshExpensePanel(); await loadPeriodData(); renderAll();
   setTimeout(()=>$('#expenseEntryModal').classList.remove('open'),350);
+}
+async function deleteExpenseById(expenseId){
+  const e=(state.expenses||[]).find(x=>String(x.id)===String(expenseId));
+  if(!e){alert('Gider kaydı bulunamadı.');return}
+  const m=expenseMeta(e);
+  const label=`${trDate(e.expense_date)} · ${m.type} · ${fmt(e.amount)}`;
+  if(!confirm(`${label}\n\nBu gider kaydı tamamen silinsin mi? Bu işlem geri alınamaz.`))return;
+  $('#expenseMsg').textContent='Gider siliniyor...';
+  const {error}=await sb.from('expenses').delete().eq('id',expenseId);
+  if(error){$('#expenseMsg').textContent='Gider silme hatası: '+error.message;alert('Gider silinemedi: '+error.message);return}
+  await refreshExpensePanel(); await loadPeriodData(); renderAll();
+  $('#expenseMsg').textContent='Gider kaydı silindi.';
 }
 function printExpenseReport(){
   const {year,month}=expensePeriod(), months=['','Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'], m=months[month];
@@ -2572,7 +2932,7 @@ function reportDataFor(year,month){
   year=Number(year); month=Number(month);
   const stays=activeStaysForPeriod(year,month);
   const accruals=(state.accruals||[]).filter(a=>Number(a.accrual_year)===year&&Number(a.accrual_month)===month);
-  const totalAccrual=accruals.reduce((s,a)=>s+Number(a.total_amount??a.rent_amount??a.amount??0),0);
+  const totalAccrual=accruals.reduce((s,a)=>s+accrualValue(a),0);
   const paid=accruals.reduce((s,a)=>s+paymentForAccrual(a.id),0);
   const receivable=Math.max(0,totalAccrual-paid);
   const totalExpense=(state.expenses||[]).reduce((s,e)=>s+Number(e.amount||0),0);
@@ -2594,7 +2954,7 @@ function reportDataFor(year,month){
   const residentPayments=Object.values(byResident).sort((a,b)=>String(a.apt).localeCompare(String(b.apt),'tr',{numeric:true}));
   const expenseBy={};(state.expenses||[]).forEach(e=>{const t=expenseMeta(e).type||'Diğer';expenseBy[t]=(expenseBy[t]||0)+Number(e.amount||0)});
   const expenseDetails=(state.expenses||[]).map(e=>({date:String(e.expense_date||e.date||e.created_at||'').slice(0,10),desc:expenseMeta(e).desc||expenseMeta(e).type||'—',type:expenseMeta(e).type||'Diğer',amount:Number(e.amount||0)})).sort((a,b)=>String(a.date).localeCompare(String(b.date)));
-  const debtors=accruals.map(a=>{const st=state.stays.find(x=>String(x.id)===String(a.stay_id));const r=st&&state.residents.find(x=>x.id===st.resident_id);const apt=st&&state.apartments.find(x=>x.id===st.apartment_id);const amount=Number(a.total_amount??a.rent_amount??a.amount??0),p=paymentForAccrual(a.id),rem=Math.max(0,amount-p);return{apt:apt?.apartment_no||'—',name:r?residentName(r):'—',amount,paid:p,rem}}).filter(x=>x.rem>0).sort((a,b)=>b.rem-a.rem);
+  const debtors=accruals.map(a=>{const st=state.stays.find(x=>String(x.id)===String(a.stay_id));const r=st&&state.residents.find(x=>x.id===st.resident_id);const apt=st&&state.apartments.find(x=>x.id===st.apartment_id);const amount=accrualValue(a),p=paymentForAccrual(a.id),rem=Math.max(0,amount-p);return{apt:apt?.apartment_no||'—',name:r?residentName(r):'—',amount,paid:p,rem}}).filter(x=>x.rem>0).sort((a,b)=>b.rem-a.rem);
   return {year,month,stays,totalAccrual,paid,receivable,totalExpense,net,perPersonCost,occupied,empty,totalApts,paymentMethods,expenseBy,residentPayments,expenseDetails,debtors};
 }
 function reportData(){
@@ -2699,7 +3059,7 @@ function printMonthlyManagementReport(){
 }
 
 function residentTcValue(r){
-  return r?.tc_no||r?.tc_identity_no||r?.identity_no||r?.tckn||r?.national_id||'—';
+  return r?.tc_no||r?.tc_identity_no||r?.identity_no||r?.tckn||r?.national_id||r?.email||'—';
 }
 function contractDurationText(start,end){
   if(!start && !end) return '—';
@@ -2921,7 +3281,7 @@ if(menuBackdrop) menuBackdrop.onclick=()=>setMobileMenu(false);
 document.querySelectorAll('.nav button').forEach(b=>{
   b.onclick=()=>{
     const v=b.dataset.view;
-    if(v==='home'||v==='apartments'||v==='residents'||v==='accruals'||v==='payments'||v==='expenses'||v==='reports') switchView(v);
+    if(v==='home'||v==='apartments'||v==='residents'||v==='accruals'||v==='payments'||v==='expenses'||v==='reports'||v==='settings') switchView(v);
     else alert('Bu modül bir sonraki geliştirme adımında bağlanacak.');
     if(window.innerWidth<=1100) setMobileMenu(false);
   };
@@ -2940,6 +3300,7 @@ $('#newResidentBtn').onclick=openNewResident;
 $('#residentDetailClose').onclick=()=>$('#residentDetailModal').classList.remove('open');
 if($('#residentDetailCloseBottom')) $('#residentDetailCloseBottom').onclick=()=>$('#residentDetailModal').classList.remove('open');
 if($('#residentEditBtn')) $('#residentEditBtn').onclick=()=>openResidentEditorById($('#residentEditBtn').dataset.residentId);
+if($('#residentDeleteDetailBtn')) $('#residentDeleteDetailBtn').onclick=()=>deleteResidentCompletely($('#residentDeleteDetailBtn').dataset.residentId);
 
 
 $('#evacuationFlowClose').onclick=()=>$('#evacuationFlowModal').classList.remove('open');
@@ -2969,6 +3330,9 @@ $('#residentExitCancel').onclick=()=>$('#residentExitModal').classList.remove('o
 $('#residentExitModal').onclick=e=>{if(e.target.id==='residentExitModal')$('#residentExitModal').classList.remove('open')};
 $('#residentExitSave').onclick=completeResidentExit;
 
+$('#cleanupResidentSearch')?.addEventListener('input',renderSettingsCleanup);
+$('#cleanupRefreshBtn')?.addEventListener('click',async()=>{await loadAll();renderSettingsCleanup();});
+
 boot();
 
 $('#accrualRefresh')?.addEventListener('click',refreshAccrualPanel);
@@ -2995,19 +3359,19 @@ $('#reportRefresh')?.addEventListener('click',refreshReportsPanel);
 $('#reportYear')?.addEventListener('change',refreshReportsPanel);
 $('#reportMonth')?.addEventListener('change',refreshReportsPanel);
 $('#reportPrint')?.addEventListener('click',printMonthlyManagementReport);
-$('#managementSummaryReportBtn')?.addEventListener('click',openManagementSummaryReport);
+$('#managementSummaryReportBtn')?.addEventListener('click',()=>openManagementSummaryReport());
 $('#managementSummaryReportClose')?.addEventListener('click',()=>$('#managementSummaryReportModal').classList.remove('open'));
 $('#managementSummaryReportModal')?.addEventListener('click',e=>{if(e.target.id==='managementSummaryReportModal')$('#managementSummaryReportModal').classList.remove('open')});
-$('#residentListReportBtn')?.addEventListener('click',openResidentListReport);
+$('#residentListReportBtn')?.addEventListener('click',()=>openResidentListReport());
 $('#residentListReportClose')?.addEventListener('click',()=>$('#residentListReportModal').classList.remove('open'));
 $('#residentListReportModal')?.addEventListener('click',e=>{if(e.target.id==='residentListReportModal')$('#residentListReportModal').classList.remove('open')});
-$('#depositReportBtn')?.addEventListener('click',openDepositReport);
-$('#rentFeeReportBtn')?.addEventListener('click',openRentFeeReport);
+$('#depositReportBtn')?.addEventListener('click',()=>openDepositReport());
+$('#rentFeeReportBtn')?.addEventListener('click',()=>openRentFeeReport());
 $('#rentFeeReportClose')?.addEventListener('click',()=>$('#rentFeeReportModal').classList.remove('open'));
 $('#rentFeeReportModal')?.addEventListener('click',e=>{if(e.target.id==='rentFeeReportModal')$('#rentFeeReportModal').classList.remove('open')});
 $('#depositReportClose')?.addEventListener('click',()=>$('#depositReportModal').classList.remove('open'));
 $('#depositReportModal')?.addEventListener('click',e=>{if(e.target.id==='depositReportModal')$('#depositReportModal').classList.remove('open')});
-$('#reportDebtorsBtn')?.addEventListener('click',openDebtorReport);
+$('#reportDebtorsBtn')?.addEventListener('click',()=>openDebtorReport());
 $('#debtorReportClose')?.addEventListener('click',()=>$('#debtorReportModal').classList.remove('open'));
 $('#debtorReportModal')?.addEventListener('click',e=>{if(e.target.id==='debtorReportModal')$('#debtorReportModal').classList.remove('open')});
 
